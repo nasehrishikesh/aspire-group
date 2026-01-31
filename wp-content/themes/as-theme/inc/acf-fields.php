@@ -1395,3 +1395,353 @@ function as_theme_register_acf_fields() {
     ));
 }
 add_action('acf/init', 'as_theme_register_acf_fields');
+
+/**
+ * Register ACF Field Groups for About Page
+ */
+function as_theme_register_about_acf_fields() {
+    if (!function_exists('acf_add_local_field_group')) {
+        return;
+    }
+
+    // About Page Hero Images Section
+    acf_add_local_field_group(array(
+        'key' => 'group_about_hero_images',
+        'title' => 'Hero Images Section',
+        'fields' => array(
+            array(
+                'key' => 'field_about_hero_image_1',
+                'label' => 'Left Image',
+                'name' => 'about_hero_image_1',
+                'type' => 'image',
+                'return_format' => 'array',
+                'instructions' => 'Main left image for hero section',
+            ),
+            array(
+                'key' => 'field_about_hero_image_2',
+                'label' => 'Right Image',
+                'name' => 'about_hero_image_2',
+                'type' => 'image',
+                'return_format' => 'array',
+                'instructions' => 'Main right image for hero section',
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'page_template',
+                    'operator' => '==',
+                    'value' => 'template-about.php',
+                ),
+            ),
+        ),
+        'menu_order' => 0,
+        'position' => 'normal',
+        'style' => 'default',
+    ));
+
+    // About Page Vision Section
+    acf_add_local_field_group(array(
+        'key' => 'group_about_vision',
+        'title' => 'Vision Section',
+        'fields' => array(
+            array(
+                'key' => 'field_about_vision_subtitle',
+                'label' => 'Subtitle',
+                'name' => 'about_vision_subtitle',
+                'type' => 'text',
+                'default_value' => 'A bold vision',
+            ),
+            array(
+                'key' => 'field_about_vision_title',
+                'label' => 'Main Title',
+                'name' => 'about_vision_title',
+                'type' => 'text',
+                'default_value' => 'Exceptional value remarkable quality',
+            ),
+            array(
+                'key' => 'field_about_vision_image',
+                'label' => 'Side Image',
+                'name' => 'about_vision_image',
+                'type' => 'image',
+                'return_format' => 'array',
+            ),
+            array(
+                'key' => 'field_about_vision_counter_number',
+                'label' => 'Counter Number',
+                'name' => 'about_vision_counter_number',
+                'type' => 'number',
+                'default_value' => 40,
+            ),
+            array(
+                'key' => 'field_about_vision_counter_suffix',
+                'label' => 'Counter Suffix',
+                'name' => 'about_vision_counter_suffix',
+                'type' => 'text',
+                'default_value' => '+',
+            ),
+            array(
+                'key' => 'field_about_vision_counter_label',
+                'label' => 'Counter Label',
+                'name' => 'about_vision_counter_label',
+                'type' => 'text',
+                'default_value' => 'Years Experience',
+            ),
+            array(
+                'key' => 'field_about_vision_description',
+                'label' => 'Description',
+                'name' => 'about_vision_description',
+                'type' => 'wysiwyg',
+                'media_upload' => 0,
+                'toolbar' => 'basic',
+            ),
+            array(
+                'key' => 'field_about_vision_button_text',
+                'label' => 'Button Text',
+                'name' => 'about_vision_button_text',
+                'type' => 'text',
+                'default_value' => 'contact us',
+            ),
+            array(
+                'key' => 'field_about_vision_button_url',
+                'label' => 'Button URL',
+                'name' => 'about_vision_button_url',
+                'type' => 'url',
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'page_template',
+                    'operator' => '==',
+                    'value' => 'template-about.php',
+                ),
+            ),
+        ),
+        'menu_order' => 1,
+        'position' => 'normal',
+        'style' => 'default',
+    ));
+
+    // About Page Values Section
+    acf_add_local_field_group(array(
+        'key' => 'group_about_values',
+        'title' => 'Values Section',
+        'fields' => array(
+            array(
+                'key' => 'field_about_values_items',
+                'label' => 'Values',
+                'name' => 'about_values_items',
+                'type' => 'repeater',
+                'min' => 1,
+                'max' => 6,
+                'layout' => 'block',
+                'button_label' => 'Add Value',
+                'sub_fields' => array(
+                    array(
+                        'key' => 'field_about_value_icon_class',
+                        'label' => 'Icon Class',
+                        'name' => 'icon_class',
+                        'type' => 'text',
+                        'instructions' => 'Icon class (e.g., easto-icon-creative-idea, easto-icon-logo, easto-icon-quality)',
+                        'default_value' => 'easto-icon-creative-idea',
+                    ),
+                    array(
+                        'key' => 'field_about_value_title',
+                        'label' => 'Title',
+                        'name' => 'title',
+                        'type' => 'text',
+                    ),
+                    array(
+                        'key' => 'field_about_value_description',
+                        'label' => 'Description',
+                        'name' => 'description',
+                        'type' => 'textarea',
+                        'rows' => 3,
+                    ),
+                ),
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'page_template',
+                    'operator' => '==',
+                    'value' => 'template-about.php',
+                ),
+            ),
+        ),
+        'menu_order' => 2,
+        'position' => 'normal',
+        'style' => 'default',
+    ));
+
+    // About Page Background Section
+    acf_add_local_field_group(array(
+        'key' => 'group_about_background',
+        'title' => 'Background Section',
+        'fields' => array(
+            array(
+                'key' => 'field_about_background_image',
+                'label' => 'Background Image',
+                'name' => 'about_background_image',
+                'type' => 'image',
+                'return_format' => 'url',
+                'instructions' => 'Full width background image section',
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'page_template',
+                    'operator' => '==',
+                    'value' => 'template-about.php',
+                ),
+            ),
+        ),
+        'menu_order' => 3,
+        'position' => 'normal',
+        'style' => 'default',
+    ));
+
+    // About Page Team Section
+    acf_add_local_field_group(array(
+        'key' => 'group_about_team',
+        'title' => 'Team Section',
+        'fields' => array(
+            array(
+                'key' => 'field_about_team_subtitle',
+                'label' => 'Subtitle',
+                'name' => 'about_team_subtitle',
+                'type' => 'text',
+                'default_value' => 'Meet our leader',
+            ),
+            array(
+                'key' => 'field_about_team_title',
+                'label' => 'Title',
+                'name' => 'about_team_title',
+                'type' => 'text',
+                'default_value' => 'The team',
+            ),
+            array(
+                'key' => 'field_about_team_members',
+                'label' => 'Team Members',
+                'name' => 'about_team_members',
+                'type' => 'repeater',
+                'min' => 1,
+                'max' => 20,
+                'layout' => 'block',
+                'button_label' => 'Add Team Member',
+                'sub_fields' => array(
+                    array(
+                        'key' => 'field_team_member_photo',
+                        'label' => 'Photo',
+                        'name' => 'photo',
+                        'type' => 'image',
+                        'return_format' => 'array',
+                    ),
+                    array(
+                        'key' => 'field_team_member_name',
+                        'label' => 'Name',
+                        'name' => 'name',
+                        'type' => 'text',
+                    ),
+                    array(
+                        'key' => 'field_team_member_position',
+                        'label' => 'Position',
+                        'name' => 'position',
+                        'type' => 'text',
+                    ),
+                    array(
+                        'key' => 'field_team_member_facebook',
+                        'label' => 'Facebook URL',
+                        'name' => 'facebook',
+                        'type' => 'url',
+                    ),
+                    array(
+                        'key' => 'field_team_member_instagram',
+                        'label' => 'Instagram URL',
+                        'name' => 'instagram',
+                        'type' => 'url',
+                    ),
+                    array(
+                        'key' => 'field_team_member_youtube',
+                        'label' => 'YouTube URL',
+                        'name' => 'youtube',
+                        'type' => 'url',
+                    ),
+                    array(
+                        'key' => 'field_team_member_twitter',
+                        'label' => 'Twitter URL',
+                        'name' => 'twitter',
+                        'type' => 'url',
+                    ),
+                ),
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'page_template',
+                    'operator' => '==',
+                    'value' => 'template-about.php',
+                ),
+            ),
+        ),
+        'menu_order' => 4,
+        'position' => 'normal',
+        'style' => 'default',
+    ));
+
+    // About Page Stats Section
+    acf_add_local_field_group(array(
+        'key' => 'group_about_stats',
+        'title' => 'Statistics Section',
+        'fields' => array(
+            array(
+                'key' => 'field_about_stats_counters',
+                'label' => 'Statistics',
+                'name' => 'about_stats_counters',
+                'type' => 'repeater',
+                'min' => 1,
+                'max' => 6,
+                'layout' => 'table',
+                'button_label' => 'Add Statistic',
+                'sub_fields' => array(
+                    array(
+                        'key' => 'field_about_stat_number',
+                        'label' => 'Number',
+                        'name' => 'number',
+                        'type' => 'number',
+                    ),
+                    array(
+                        'key' => 'field_about_stat_suffix',
+                        'label' => 'Suffix',
+                        'name' => 'suffix',
+                        'type' => 'text',
+                        'instructions' => 'e.g., K, M, +',
+                    ),
+                    array(
+                        'key' => 'field_about_stat_label',
+                        'label' => 'Label',
+                        'name' => 'label',
+                        'type' => 'text',
+                    ),
+                ),
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'page_template',
+                    'operator' => '==',
+                    'value' => 'template-about.php',
+                ),
+            ),
+        ),
+        'menu_order' => 5,
+        'position' => 'normal',
+        'style' => 'default',
+    ));
+}
+add_action('acf/init', 'as_theme_register_about_acf_fields');

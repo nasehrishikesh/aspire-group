@@ -103,6 +103,9 @@ function as_theme_enqueue_styles() {
     wp_enqueue_style('as-elementor-post-3758', AS_THEME_URI . '/assets/css/elementor-post-3758.css', array(), AS_THEME_VERSION);
     wp_enqueue_style('as-easto-elementor', AS_THEME_URI . '/assets/css/easto-elementor.css', array(), AS_THEME_VERSION);
     wp_enqueue_style('as-home', AS_THEME_URI . '/assets/css/home.css', array(), AS_THEME_VERSION);
+    wp_enqueue_style('as-megamenu-frontend', AS_THEME_URI . '/assets/css/post-5841.css', array(), AS_THEME_VERSION);
+    wp_enqueue_style('about-us', AS_THEME_URI . '/assets/css/about.css', array(), AS_THEME_VERSION);
+    wp_enqueue_style('as-odometer', AS_THEME_URI . '/assets/css/odometer.css', array(), AS_THEME_VERSION);
 
     // Additional CSS files loaded in footer originally
     wp_enqueue_style('as-elementor-post-2295', AS_THEME_URI . '/assets/css/elementor-post-2295.css', array(), AS_THEME_VERSION);
@@ -146,13 +149,25 @@ function as_theme_enqueue_scripts() {
     wp_enqueue_script('as-scroll-smooth', AS_THEME_URI . '/assets/js/scroll-smooth.min.js', array('jquery'), AS_THEME_VERSION, true);
     wp_enqueue_script('as-search-popup', AS_THEME_URI . '/assets/js/search-popup.min.js', array('jquery'), AS_THEME_VERSION, true);
     wp_enqueue_script('as-sticky-kit', AS_THEME_URI . '/assets/js/jquery.sticky-kit.min.js', array('jquery'), AS_THEME_VERSION, true);
-    wp_enqueue_script('as-text-editor', AS_THEME_URI . '/assets/js/text-editor.min.js', array('jquery'), AS_THEME_VERSION, true);
+
+    // Only load text-editor if the file exists
+    if (file_exists(AS_THEME_DIR . '/assets/js/text-editor.min.js')) {
+        wp_enqueue_script('as-text-editor', AS_THEME_URI . '/assets/js/text-editor.min.js', array('jquery'), AS_THEME_VERSION, true);
+    }
+
     wp_enqueue_script('as-nav-mobile', AS_THEME_URI . '/assets/js/nav-mobile.min.js', array('jquery'), AS_THEME_VERSION, true);
     wp_enqueue_script('as-megamenu-frontend', AS_THEME_URI . '/assets/js/megamenu-frontend.js', array('jquery'), AS_THEME_VERSION, true);
     wp_enqueue_script('as-login', AS_THEME_URI . '/assets/js/login.js', array('jquery'), AS_THEME_VERSION, true);
 
+    wp_enqueue_script('as-odometer', AS_THEME_URI . '/assets/js/odometer.js', array('jquery'), AS_THEME_VERSION, true);
+
     // Elementor scripts
     wp_enqueue_script('as-elementor-webpack-runtime', AS_THEME_URI . '/assets/js/elementor-webpack-runtime.min.js', array(), AS_THEME_VERSION, true);
+
+    // Set webpack public path to fix chunk loading
+    $webpack_public_path = AS_THEME_URI . '/assets/js/';
+    wp_add_inline_script('as-elementor-webpack-runtime', "window.__webpack_public_path__ = '{$webpack_public_path}';", 'before');
+
     wp_enqueue_script('as-elementor-frontend-modules', AS_THEME_URI . '/assets/js/elementor-frontend-modules.min.js', array('jquery'), AS_THEME_VERSION, true);
     wp_enqueue_script('as-waypoints', AS_THEME_URI . '/assets/js/waypoints.min.js', array('jquery'), AS_THEME_VERSION, true);
     wp_enqueue_script('as-jquery-ui-core', AS_THEME_URI . '/assets/js/jquery-ui-core.min.js', array('jquery'), AS_THEME_VERSION, true);
@@ -174,6 +189,25 @@ function as_theme_enqueue_scripts() {
     wp_enqueue_script('as-motion-fx', AS_THEME_URI . '/assets/js/motion-fx.js', array('jquery'), AS_THEME_VERSION, true);
     wp_enqueue_script('as-jarallax', AS_THEME_URI . '/assets/js/jarallax.min.js', array('jquery'), AS_THEME_VERSION, true);
     wp_enqueue_script('as-swiper', AS_THEME_URI . '/assets/js/swiper.min.js', array('jquery'), AS_THEME_VERSION, true);
+
+    // Add error handler for webpack chunk loading failures
+    $error_handler = "
+    window.addEventListener('error', function(e) {
+        if (e.message && e.message.includes('Loading chunk')) {
+            console.warn('Webpack chunk failed to load, but page will continue:', e.message);
+            e.preventDefault();
+            return true;
+        }
+    });
+    window.addEventListener('unhandledrejection', function(e) {
+        if (e.reason && e.reason.message && e.reason.message.includes('Loading chunk')) {
+            console.warn('Webpack chunk promise rejected, but page will continue:', e.reason.message);
+            e.preventDefault();
+            return true;
+        }
+    });
+    ";
+    wp_add_inline_script('as-elementor-webpack-runtime', $error_handler, 'after');
 }
 add_action('wp_enqueue_scripts', 'as_theme_enqueue_scripts');
 
