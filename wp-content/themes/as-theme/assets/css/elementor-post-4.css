@@ -1,0 +1,74 @@
+.elementor-kit-4 {
+  --e-global-color-primary: #96796e;
+  --e-global-color-primary_hover: #876c63;
+  --e-global-color-secondary: #bdcacb;
+  --e-global-color-secondary_hover: #aab5b6;
+  --e-global-color-text: #96796e;
+  --e-global-color-text_light: #ada4a1;
+  --e-global-color-accent: #000000;
+  --e-global-color-border: #e3dcd9;
+  --e-global-color-background: #ffffff;
+  --e-global-color-background_light: #f6f1ea;
+  --e-global-typography-heading_title-font-family: "URW Gothic L";
+  --e-global-typography-heading_title-font-size: 60px;
+  --e-global-typography-heading_title-font-weight: 600;
+  --e-global-typography-heading_title-line-height: 1.067em;
+  --e-global-typography-2bd818f-font-family: "URW Gothic L";
+  --e-global-typography-2bd818f-font-size: 12px;
+  --e-global-typography-2bd818f-text-transform: uppercase;
+  --e-global-typography-2bd818f-letter-spacing: 2px;
+}
+
+.elementor-section.elementor-section-boxed > .elementor-container {
+  max-width: 1320px;
+}
+
+.e-con {
+  --container-max-width: 1320px;
+}
+
+.elementor-widget:not(:last-child) {
+  margin-block-end: 0px;
+}
+
+.elementor-element {
+  --widgets-spacing: 0px 0px;
+}
+
+h1.entry-title {
+  display: var(--page-title-display);
+}
+
+@media (max-width: 1200px) {
+  .elementor-kit-4 {
+    --e-global-typography-heading_title-font-size: 54px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .elementor-kit-4 {
+    --e-global-typography-heading_title-font-size: 48px;
+  }
+
+  .elementor-section.elementor-section-boxed > .elementor-container {
+    max-width: 1024px;
+  }
+
+  .e-con {
+    --container-max-width: 1024px;
+  }
+}
+
+@media (max-width: 767px) {
+  .elementor-kit-4 {
+    --e-global-typography-heading_title-font-size: 36px;
+  }
+
+  .elementor-section.elementor-section-boxed > .elementor-container {
+    max-width: 767px;
+  }
+
+  .e-con {
+    --container-max-width: 767px;
+  }
+}
