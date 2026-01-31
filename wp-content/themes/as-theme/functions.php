@@ -160,6 +160,7 @@ function as_theme_enqueue_scripts() {
     wp_enqueue_script('as-login', AS_THEME_URI . '/assets/js/login.js', array('jquery'), AS_THEME_VERSION, true);
 
     wp_enqueue_script('as-odometer', AS_THEME_URI . '/assets/js/odometer.js', array('jquery'), AS_THEME_VERSION, true);
+    wp_enqueue_script('as-odometer-init', AS_THEME_URI . '/assets/js/odometer-init.js', array('jquery', 'as-odometer'), AS_THEME_VERSION, true);
 
     // Elementor scripts
     wp_enqueue_script('as-elementor-webpack-runtime', AS_THEME_URI . '/assets/js/elementor-webpack-runtime.min.js', array(), AS_THEME_VERSION, true);

@@ -54,7 +54,7 @@
          </div>
       </div>
    </div>
-   <div id="content" class="site-content clear" tabindex="-1">
+   <div id="content" class="site-content clear mb-0" tabindex="-1">
          <div id="primary">
             <main id="main" class="site-main">
                <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -168,10 +168,7 @@
                                              <div class="elementor-counter">
                                                 <div class="elementor-counter-number-wrapper">
                                                    <span class="elementor-counter-number-prefix"></span>
-                                                   <span class="elementor-odometer-number odometer odometer-auto-theme" data-count="40">
-                                                      <div class="odometer-inside"><span class="odometer-digit"><span class="odometer-digit-spacer">8</span><span class="odometer-digit-inner"><span class="odometer-ribbon"><span class="odometer-ribbon-inner"><span class="odometer-value">4</span></span></span></span></span><span class="odometer-digit"><span class="odometer-digit-spacer">8</span><span class="odometer-digit-inner"><span class="odometer-ribbon"><span class="odometer-ribbon-inner"><span class="odometer-value">0</span></span></span></span></span></div>
-                                                   </span>
-                                                   <span class="elementor-counter-number-suffix"></span>
+                                                   <span class="elementor-odometer-number odometer odometer-auto-theme" data-count="<?php echo esc_attr($vision_counter); ?>">0</span>
                                                 </div>
                                              </div>
                                           </div>
@@ -352,30 +349,11 @@
                               <?php foreach ($stats_counters as $index => $stat) : ?>
                               <div class="elementor-element elementor-element-87d59bf-<?php echo $index; ?> e-con-full e-flex e-con e-child justify-content-md-center" data-id="87d59bf-<?php echo $index; ?>" data-element_type="container">
                                  <div class="elementor-element elementor-element-ba64156 elementor-widget__width-inherit elementor-widget-laptop__width-auto elementor-widget elementor-widget-easto-counter" data-id="ba64156-<?php echo $index; ?>" data-element_type="widget" data-widget_type="easto-counter.default">
-                                    <div class="elementor-widget-container">
+                                    <div class="elementor-widget-container border-right">
                                        <div class="elementor-counter">
                                           <div class="elementor-counter-number-wrapper">
                                              <span class="elementor-counter-number-prefix"></span>
-                                             <span class="elementor-odometer-number odometer odometer-auto-theme" data-count="<?php echo esc_attr($stat['number']); ?>">
-                                                <div class="odometer-inside">
-                                                   <?php
-                                                      $stat_str = (string)$stat['number'];
-                                                      for ($i = 0; $i < strlen($stat_str); $i++) :
-                                                          $digit = $stat_str[$i];
-                                                      ?>
-                                                   <span class="odometer-digit">
-                                                   <span class="odometer-digit-spacer">8</span>
-                                                   <span class="odometer-digit-inner">
-                                                   <span class="odometer-ribbon">
-                                                   <span class="odometer-ribbon-inner">
-                                                   <span class="odometer-value"><?php echo esc_html($digit); ?></span>
-                                                   </span>
-                                                   </span>
-                                                   </span>
-                                                   </span>
-                                                   <?php endfor; ?>
-                                                </div>
-                                             </span>
+                                             <span class="elementor-odometer-number odometer odometer-auto-theme" data-count="<?php echo esc_attr($stat['number']); ?>">0</span>
                                              <span class="elementor-counter-number-suffix"><?php echo esc_html($stat['suffix']); ?></span>
                                           </div>
                                        </div>
