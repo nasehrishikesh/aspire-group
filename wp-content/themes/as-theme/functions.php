@@ -104,6 +104,7 @@ function as_theme_enqueue_styles() {
     wp_enqueue_style('as-easto-elementor', AS_THEME_URI . '/assets/css/easto-elementor.css', array(), AS_THEME_VERSION);
     wp_enqueue_style('as-home', AS_THEME_URI . '/assets/css/home.css', array(), AS_THEME_VERSION);
     wp_enqueue_style('as-megamenu-frontend', AS_THEME_URI . '/assets/css/post-5841.css', array(), AS_THEME_VERSION);
+    wp_enqueue_style('as-post-62', AS_THEME_URI . '/assets/css/post-62.css', array(), AS_THEME_VERSION);
     wp_enqueue_style('about-us', AS_THEME_URI . '/assets/css/about.css', array(), AS_THEME_VERSION);
     wp_enqueue_style('as-odometer', AS_THEME_URI . '/assets/css/odometer.css', array(), AS_THEME_VERSION);
 

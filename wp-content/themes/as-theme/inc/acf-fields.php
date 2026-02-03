@@ -1745,3 +1745,179 @@ function as_theme_register_about_acf_fields() {
     ));
 }
 add_action('acf/init', 'as_theme_register_about_acf_fields');
+
+/**
+ * Register ACF Field Groups for Contact Page
+ */
+function as_theme_register_contact_acf_fields() {
+    if (!function_exists('acf_add_local_field_group')) {
+        return;
+    }
+
+    // Contact Page Hero Images Section
+    acf_add_local_field_group(array(
+        'key' => 'group_contact_hero_images',
+        'title' => 'Hero Images Section',
+        'fields' => array(
+            array(
+                'key' => 'field_contact_hero_image_1',
+                'label' => 'Left Image',
+                'name' => 'contact_hero_image_1',
+                'type' => 'image',
+                'return_format' => 'array',
+                'instructions' => 'Main left image for hero section',
+            ),
+            array(
+                'key' => 'field_contact_hero_image_2',
+                'label' => 'Right Image',
+                'name' => 'contact_hero_image_2',
+                'type' => 'image',
+                'return_format' => 'array',
+                'instructions' => 'Right image for hero section',
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'page_template',
+                    'operator' => '==',
+                    'value' => 'template-contact.php',
+                ),
+            ),
+        ),
+        'menu_order' => 0,
+        'position' => 'normal',
+        'style' => 'default',
+    ));
+
+// Contact Form Section
+    acf_add_local_field_group(array(
+        'key' => 'group_contact_form',
+        'title' => 'Contact Form Section',
+        'fields' => array(
+            array(
+                'key' => 'field_contact_form_title',
+                'label' => 'Form Title',
+                'name' => 'contact_form_title',
+                'type' => 'text',
+                'instructions' => 'Form section heading',
+                'default_value' => 'Drop us a line',
+            ),
+            array(
+                'key' => 'field_contact_form_description',
+                'label' => 'Form Description',
+                'name' => 'contact_form_description',
+                'type' => 'text',
+                'instructions' => 'Text above the form',
+                'default_value' => 'Your email address will not be published. Required fields are marked *',
+            ),
+            array(
+                'key' => 'field_contact_form_shortcode',
+                'label' => 'Contact Form Shortcode',
+                'name' => 'contact_form_shortcode',
+                'type' => 'text',
+                'instructions' => 'Contact Form 7 shortcode (e.g., [contact-form-7 id="123"])',
+            ),
+            array(
+                'key' => 'field_contact_building_address_label',
+                'label' => 'Building Address Label',
+                'name' => 'contact_building_address_label',
+                'type' => 'text',
+                'default_value' => 'BUILDING ADDRESS',
+            ),
+            array(
+                'key' => 'field_contact_building_address',
+                'label' => 'Building Address',
+                'name' => 'contact_building_address',
+                'type' => 'textarea',
+                'rows' => 2,
+                'default_value' => '4140 Parker Rd. Allentown, New Mexico 31134',
+            ),
+            array(
+                'key' => 'field_contact_leasing_office_label',
+                'label' => 'Leasing Office Label',
+                'name' => 'contact_leasing_office_label',
+                'type' => 'text',
+                'default_value' => 'Leasing Office',
+            ),
+            array(
+                'key' => 'field_contact_leasing_office',
+                'label' => 'Leasing Office Address',
+                'name' => 'contact_leasing_office',
+                'type' => 'textarea',
+                'rows' => 2,
+                'default_value' => '2464 Royal Ln. Mesa, New Jersey 45463',
+            ),
+            array(
+                'key' => 'field_contact_general_inquiries_label',
+                'label' => 'General Inquiries Label',
+                'name' => 'contact_general_inquiries_label',
+                'type' => 'text',
+                'default_value' => 'GENERAL INQUIRIES',
+            ),
+            array(
+                'key' => 'field_contact_phone',
+                'label' => 'Phone Number',
+                'name' => 'contact_phone',
+                'type' => 'text',
+                'default_value' => '(084) 123 – 456 88',
+            ),
+            array(
+                'key' => 'field_contact_email',
+                'label' => 'Email Address',
+                'name' => 'contact_email',
+                'type' => 'email',
+                'default_value' => 'contact@example.com',
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'page_template',
+                    'operator' => '==',
+                    'value' => 'template-contact.php',
+                ),
+            ),
+        ),
+        'menu_order' => 1,
+        'position' => 'normal',
+        'style' => 'default',
+    ));
+
+    // Map Section
+    acf_add_local_field_group(array(
+        'key' => 'group_contact_map',
+        'title' => 'Map Section',
+        'fields' => array(
+            array(
+                'key' => 'field_contact_map_url',
+                'label' => 'Google Map Embed URL',
+                'name' => 'contact_map_url',
+                'type' => 'url',
+                'instructions' => 'Google Maps embed URL (e.g., https://maps.google.com/maps?q=...&output=embed)',
+                'default_value' => 'https://maps.google.com/maps?q=London%20Eye%2C%20London%2C%20United%20Kingdom&t=m&z=10&output=embed&iwloc=near',
+            ),
+            array(
+                'key' => 'field_contact_show_map',
+                'label' => 'Show Map',
+                'name' => 'contact_show_map',
+                'type' => 'true_false',
+                'default_value' => 1,
+                'ui' => 1,
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'page_template',
+                    'operator' => '==',
+                    'value' => 'template-contact.php',
+                ),
+            ),
+        ),
+        'menu_order' => 2,
+        'position' => 'normal',
+        'style' => 'default',
+    ));
+}
+add_action('acf/init', 'as_theme_register_contact_acf_fields');
