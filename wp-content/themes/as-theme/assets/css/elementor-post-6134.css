@@ -1712,3 +1712,223 @@ body:not(.rtl) .elementor-6134 .elementor-element.elementor-element-81bb9e0 .ele
         min-height: 150px;
     }
 }
+
+/* ===== Neighborhood Section ===== */
+.neighborhood-section {
+    padding: 80px 0;
+    background-color: var(--e-global-color-background, #fff);
+}
+
+.neighborhood-heading {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.neighborhood-heading .elementor-heading-title {
+    font-family: var(--e-global-typography-primary-font-family, inherit);
+    font-size: 40px;
+    font-weight: 600;
+    color: var(--e-global-color-primary, #B8977E);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: var(--e-global-typography-heading_title-font-family), Sans-serif;
+    font-size: var(--e-global-typography-heading_title-font-size);
+    font-weight: var(--e-global-typography-heading_title-font-weight);
+    line-height: var(--e-global-typography-heading_title-line-height);
+}
+
+.neighborhood-content {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.neighborhood-accordions {
+    flex: 0 0 calc(30% - 20px);
+    min-width: 0;
+}
+
+.neighborhood-map {
+    flex: 0 0 calc(70% - 20px);
+    min-width: 0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.neighborhood-map iframe {
+    display: block;
+    border-radius: 4px;
+}
+
+.neighborhood-map-placeholder {
+    background: #f5f5f5;
+    min-height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    border-radius: 4px;
+}
+
+/* Accordion Styles */
+.neighborhood-accordion {
+    border-bottom: 1px solid var(--e-global-color-border, rgba(255,255,255,0.1));
+}
+
+.neighborhood-accordion:first-child {
+    border-top: 1px solid var(--e-global-color-border, rgba(255,255,255,0.1));
+}
+
+.neighborhood-accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.neighborhood-accordion-header:hover {
+    color: var(--e-global-color-primary, #B8977E);
+}
+
+.accordion-category-name {
+    font-family: var(--e-global-typography-primary-font-family, inherit);
+    font-size: 18px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--e-global-color-text, #333);
+    transition: color 0.3s ease;
+}
+
+.neighborhood-accordion.active .accordion-category-name {
+    color: var(--e-global-color-primary, #B8977E);
+}
+
+.accordion-toggle-icon {
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+    color: var(--e-global-color-text, #333);
+}
+
+.neighborhood-accordion.active .accordion-toggle-icon {
+    transform: rotate(180deg);
+    color: var(--e-global-color-primary, #B8977E);
+}
+
+.neighborhood-accordion-body {
+    display: none;
+    padding: 0 5px 20px;
+}
+
+/* Places List */
+.neighborhood-places-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.neighborhood-place-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px dashed rgba(0,0,0,0.08);
+}
+
+.neighborhood-place-item:last-child {
+    border-bottom: none;
+}
+
+.place-distance {
+    flex-shrink: 0;
+    width: 80px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--e-global-color-primary, #B8977E);
+}
+
+.place-name {
+    font-size: 15px;
+    color: var(--e-global-color-text, #333);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .neighborhood-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .neighborhood-accordions {
+        flex: 0 0 100%;
+        width: 100%;
+    }
+
+    .neighborhood-map {
+        flex: 0 0 100%;
+        width: 100%;
+    }
+
+    .neighborhood-map iframe {
+        min-height: 350px !important;
+    }
+
+    .neighborhood-heading .elementor-heading-title {
+        font-size: 32px;
+    }
+
+    .neighborhood-section {
+        padding: 60px 0;
+    }
+}
+
+@media (max-width: 767px) {
+    .neighborhood-section {
+        padding: 40px 0;
+    }
+
+    .neighborhood-heading .elementor-heading-title {
+        font-size: 24px;
+        letter-spacing: 1px;
+    }
+
+    .neighborhood-heading {
+        margin-bottom: 25px;
+    }
+
+    .accordion-category-name {
+        font-size: 15px;
+        letter-spacing: 1px;
+    }
+
+    .neighborhood-accordion-header {
+        padding: 14px 5px;
+    }
+
+    .neighborhood-accordion-body {
+        padding: 0 5px 15px;
+    }
+
+    .place-distance {
+        width: 70px;
+        font-size: 13px;
+    }
+
+    .place-name {
+        font-size: 14px;
+    }
+
+    .neighborhood-place-item {
+        padding: 8px 0;
+    }
+
+    .neighborhood-map iframe {
+        min-height: 250px !important;
+    }
+
+    .neighborhood-content {
+        gap: 20px;
+    }
+}

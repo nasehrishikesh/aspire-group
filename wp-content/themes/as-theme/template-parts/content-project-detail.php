@@ -17,6 +17,11 @@
    // Amenities section
    $amenities_heading = get_field('project_amenities_heading');
    $amenities_items = get_field('project_amenities_items');
+
+   // Neighborhood section
+   $neighborhood_title = get_field('project_neighborhood_title');
+   $neighborhood_map = get_field('project_neighborhood_map_embed');
+   $neighborhood_categories = get_field('project_neighborhood_categories');
    ?>
 <div id="page" class="hfeed site elementor-5841 elementor-36">
    <!-- Breadcrumb Section -->
@@ -241,6 +246,60 @@
                   </div>
                </div>
             </div>
+            <?php endif; ?>
+
+            <!-- Neighborhood Section -->
+            <?php if ($neighborhood_categories) : ?>
+               <div data-elementor-type="wp-page" data-elementor-id="6134" class="elementor-element elementor-element-aadbbc7 e-flex e-con-boxed e-con e-parent mt-150 e-lazyloaded" id="neighborhood-sync-section">
+            <div class="elementor-element elementor-element-e1bb64b e-flex e-con-boxed e-con e-parent e-lazyloaded" data-id="e1bb64b" data-element_type="container" data-settings='{"background_background":"classic"}'>
+                  <div class="e-con-inner">
+            <div class="neighborhood-section" id="neighborhood-section">
+               <div class="elementor-element e-flex e-con-boxed e-con e-parent e-lazyloaded">
+                  <div class="e-con-inner">
+                     <div class="neighborhood-heading">
+                        <h2 class="elementor-heading-title elementor-size-default"><?php echo esc_html($neighborhood_title ?: 'Discover nearby places'); ?></h2>
+                     </div>
+                     <div class="neighborhood-content">
+                        <div class="neighborhood-accordions">
+                           <?php foreach ($neighborhood_categories as $cat_index => $category) : ?>
+                           <div class="neighborhood-accordion<?php echo $cat_index === 0 ? ' active' : ''; ?>">
+                              <div class="neighborhood-accordion-header" data-accordion="<?php echo esc_attr($cat_index); ?>">
+                                 <span class="accordion-category-name"><?php echo esc_html($category['category_name']); ?></span>
+                                 <span class="accordion-toggle-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                 </span>
+                              </div>
+                              <div class="neighborhood-accordion-body"<?php echo $cat_index === 0 ? ' style="display:block;"' : ''; ?>>
+                                 <?php if (!empty($category['category_places'])) : ?>
+                                 <ul class="neighborhood-places-list">
+                                    <?php foreach ($category['category_places'] as $place) : ?>
+                                    <li class="neighborhood-place-item">
+                                       <span class="place-distance"><?php echo esc_html($place['distance']); ?></span>
+                                       <span class="place-name"><?php echo esc_html($place['place_name']); ?></span>
+                                    </li>
+                                    <?php endforeach; ?>
+                                 </ul>
+                                 <?php endif; ?>
+                              </div>
+                           </div>
+                           <?php endforeach; ?>
+                        </div>
+                        <div class="neighborhood-map">
+                           <?php if ($neighborhood_map) : ?>
+                           <iframe src="<?php echo esc_url($neighborhood_map); ?>" width="100%" height="100%" style="border:0; min-height:450px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                           <?php else : ?>
+                           <div class="neighborhood-map-placeholder">
+                              <p>Map will be displayed here</p>
+                           </div>
+                           <?php endif; ?>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            </div>
+                           </div>
+                           </div>
             <?php endif; ?>
          </main>
          <!-- #main -->

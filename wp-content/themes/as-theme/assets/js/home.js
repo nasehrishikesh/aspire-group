@@ -393,3 +393,30 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+// Neighborhood Accordion Toggle
+document.addEventListener('DOMContentLoaded', function() {
+    var accordionHeaders = document.querySelectorAll('.neighborhood-accordion-header');
+
+    if (accordionHeaders.length > 0) {
+        accordionHeaders.forEach(function(header) {
+            header.addEventListener('click', function() {
+                var accordion = this.parentElement;
+                var body = accordion.querySelector('.neighborhood-accordion-body');
+                var isActive = accordion.classList.contains('active');
+
+                // Close all accordions
+                document.querySelectorAll('.neighborhood-accordion').forEach(function(item) {
+                    item.classList.remove('active');
+                    item.querySelector('.neighborhood-accordion-body').style.display = 'none';
+                });
+
+                // Open clicked one if it was closed
+                if (!isActive) {
+                    accordion.classList.add('active');
+                    body.style.display = 'block';
+                }
+            });
+        });
+    }
+});

@@ -2073,3 +2073,91 @@ function as_theme_register_project_amenities_acf_fields() {
     ));
 }
 add_action('acf/init', 'as_theme_register_project_amenities_acf_fields');
+
+/**
+ * Register ACF Field Groups for Project Detail - Neighborhood Section
+ */
+function as_theme_register_project_neighborhood_acf_fields() {
+    if (!function_exists('acf_add_local_field_group')) {
+        return;
+    }
+
+    acf_add_local_field_group(array(
+        'key' => 'group_project_neighborhood_section',
+        'title' => 'Neighborhood Section',
+        'fields' => array(
+            array(
+                'key' => 'field_project_neighborhood_title',
+                'label' => 'Section Title',
+                'name' => 'project_neighborhood_title',
+                'type' => 'text',
+                'default_value' => 'Discover nearby places',
+            ),
+            array(
+                'key' => 'field_project_neighborhood_map_embed',
+                'label' => 'Google Maps Embed URL',
+                'name' => 'project_neighborhood_map_embed',
+                'type' => 'url',
+                'instructions' => 'Paste the Google Maps embed src URL (from iframe embed code)',
+            ),
+            array(
+                'key' => 'field_project_neighborhood_categories',
+                'label' => 'Categories',
+                'name' => 'project_neighborhood_categories',
+                'type' => 'repeater',
+                'min' => 1,
+                'max' => 10,
+                'layout' => 'block',
+                'sub_fields' => array(
+                    array(
+                        'key' => 'field_neighborhood_category_name',
+                        'label' => 'Category Name',
+                        'name' => 'category_name',
+                        'type' => 'text',
+                        'required' => 1,
+                        'instructions' => 'e.g. Shopping, Restaurants, Education, Entertainment',
+                    ),
+                    array(
+                        'key' => 'field_neighborhood_category_places',
+                        'label' => 'Places',
+                        'name' => 'category_places',
+                        'type' => 'repeater',
+                        'min' => 1,
+                        'max' => 20,
+                        'layout' => 'table',
+                        'sub_fields' => array(
+                            array(
+                                'key' => 'field_neighborhood_place_name',
+                                'label' => 'Place Name',
+                                'name' => 'place_name',
+                                'type' => 'text',
+                                'required' => 1,
+                            ),
+                            array(
+                                'key' => 'field_neighborhood_place_distance',
+                                'label' => 'Distance (km)',
+                                'name' => 'distance',
+                                'type' => 'text',
+                                'required' => 1,
+                                'instructions' => 'e.g. 1.2 km',
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'page_template',
+                    'operator' => '==',
+                    'value' => 'template-project-detail.php',
+                ),
+            ),
+        ),
+        'menu_order' => 2,
+        'position' => 'normal',
+        'style' => 'default',
+    ));
+}
+add_action('acf/init', 'as_theme_register_project_neighborhood_acf_fields');
