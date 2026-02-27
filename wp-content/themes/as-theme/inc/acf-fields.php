@@ -1999,9 +1999,9 @@ function as_theme_register_project_detail_acf_fields() {
         'location' => array(
             array(
                 array(
-                    'param' => 'page_template',
+                    'param' => 'post_type',
                     'operator' => '==',
-                    'value' => 'template-project-detail.php',
+                    'value' => 'projects',
                 ),
             ),
         ),
@@ -2061,13 +2061,13 @@ function as_theme_register_project_amenities_acf_fields() {
         'location' => array(
             array(
                 array(
-                    'param' => 'page_template',
+                    'param' => 'post_type',
                     'operator' => '==',
-                    'value' => 'template-project-detail.php',
+                    'value' => 'projects',
                 ),
             ),
         ),
-        'menu_order' => 1,
+        'menu_order' => 2,
         'position' => 'normal',
         'style' => 'default',
     ));
@@ -2149,15 +2149,130 @@ function as_theme_register_project_neighborhood_acf_fields() {
         'location' => array(
             array(
                 array(
-                    'param' => 'page_template',
+                    'param' => 'post_type',
                     'operator' => '==',
-                    'value' => 'template-project-detail.php',
+                    'value' => 'projects',
                 ),
             ),
         ),
-        'menu_order' => 2,
+        'menu_order' => 3,
         'position' => 'normal',
         'style' => 'default',
     ));
 }
 add_action('acf/init', 'as_theme_register_project_neighborhood_acf_fields');
+
+/**
+ * Register ACF Field Groups for Project Detail - Iconic Landmark Section
+ */
+function as_theme_register_project_landmark_acf_fields() {
+    if (!function_exists('acf_add_local_field_group')) {
+        return;
+    }
+
+    acf_add_local_field_group(array(
+        'key' => 'group_project_landmark_section',
+        'title' => 'Iconic Landmark Section',
+        'fields' => array(
+            array(
+                'key' => 'field_project_landmark_subtitle',
+                'label' => 'Subtitle',
+                'name' => 'project_landmark_subtitle',
+                'type' => 'text',
+                'default_value' => 'an iconic landmark',
+            ),
+            array(
+                'key' => 'field_project_landmark_title',
+                'label' => 'Title',
+                'name' => 'project_landmark_title',
+                'type' => 'text',
+                'default_value' => 'Landmark style reinvented',
+            ),
+            array(
+                'key' => 'field_project_landmark_description',
+                'label' => 'Description',
+                'name' => 'project_landmark_description',
+                'type' => 'textarea',
+                'rows' => 3,
+            ),
+            array(
+                'key' => 'field_project_landmark_button_text',
+                'label' => 'Button Text',
+                'name' => 'project_landmark_button_text',
+                'type' => 'text',
+                'default_value' => 'explore residences',
+            ),
+            array(
+                'key' => 'field_project_landmark_button_action',
+                'label' => 'Button Action',
+                'name' => 'project_landmark_button_action',
+                'type' => 'select',
+                'choices' => array(
+                    'link' => 'Open Link',
+                    'popup' => 'Open Popup Form',
+                ),
+                'default_value' => 'link',
+            ),
+            array(
+                'key' => 'field_project_landmark_button_url',
+                'label' => 'Button URL',
+                'name' => 'project_landmark_button_url',
+                'type' => 'url',
+                'conditional_logic' => array(
+                    array(
+                        array(
+                            'field' => 'field_project_landmark_button_action',
+                            'operator' => '==',
+                            'value' => 'link',
+                        ),
+                    ),
+                ),
+            ),
+            array(
+                'key' => 'field_project_landmark_counters',
+                'label' => 'Counters',
+                'name' => 'project_landmark_counters',
+                'type' => 'repeater',
+                'min' => 1,
+                'max' => 6,
+                'layout' => 'table',
+                'sub_fields' => array(
+                    array(
+                        'key' => 'field_project_landmark_counter_number',
+                        'label' => 'Number',
+                        'name' => 'number',
+                        'type' => 'number',
+                        'required' => 1,
+                    ),
+                    array(
+                        'key' => 'field_project_landmark_counter_suffix',
+                        'label' => 'Suffix',
+                        'name' => 'suffix',
+                        'type' => 'text',
+                        'instructions' => 'e.g. +, K, M',
+                    ),
+                    array(
+                        'key' => 'field_project_landmark_counter_description',
+                        'label' => 'Description',
+                        'name' => 'description',
+                        'type' => 'text',
+                        'required' => 1,
+                    ),
+                ),
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'projects',
+                ),
+            ),
+        ),
+        'menu_order' => 1,
+        'position' => 'normal',
+        'style' => 'default',
+    ));
+}
+add_action('acf/init', 'as_theme_register_project_landmark_acf_fields');

@@ -18,6 +18,15 @@
    $amenities_heading = get_field('project_amenities_heading');
    $amenities_items = get_field('project_amenities_items');
 
+   // Iconic Landmark section
+   $landmark_subtitle = get_field('project_landmark_subtitle');
+   $landmark_title = get_field('project_landmark_title');
+   $landmark_description = get_field('project_landmark_description');
+   $landmark_button_text = get_field('project_landmark_button_text');
+   $landmark_button_action = get_field('project_landmark_button_action');
+   $landmark_button_url = get_field('project_landmark_button_url');
+   $landmark_counters = get_field('project_landmark_counters');
+
    // Neighborhood section
    $neighborhood_title = get_field('project_neighborhood_title');
    $neighborhood_map = get_field('project_neighborhood_map_embed');
@@ -106,12 +115,12 @@
                   <div class="elementor-element elementor-element-7adec53 e-con-full e-flex e-con e-child" data-id="7adec53" data-element_type="container">
                      <div class="elementor-element elementor-element-f7f4a64 elementor-widget elementor-widget-heading animated opal-move-right" data-id="f7f4a64" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;opal-move-right&quot;}" data-widget_type="heading.default">
                         <div class="elementor-widget-container">
-                           <div class="elementor-heading-title elementor-size-default">an iconic landmark</div>
+                           <div class="elementor-heading-title elementor-size-default"><?php echo esc_html($landmark_subtitle ?: 'an iconic landmark'); ?></div>
                         </div>
                      </div>
                      <div class="elementor-element elementor-element-ce7ffe8 elementor-widget__width-initial animated-fast elementor-widget elementor-widget-heading animated opal-move-right" data-id="ce7ffe8" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;opal-move-right&quot;}" data-widget_type="heading.default">
                         <div class="elementor-widget-container">
-                           <h2 class="elementor-heading-title elementor-size-default">Landmark style reinvented</h2>
+                           <h2 class="elementor-heading-title elementor-size-default"><?php echo esc_html($landmark_title ?: 'Landmark style reinvented'); ?></h2>
                         </div>
                      </div>
                      <div class="elementor-element elementor-element-e4e28db animated-fast elementor-widget elementor-widget-text-editor animated opal-move-right" data-id="e4e28db" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;opal-move-right&quot;}" data-widget_type="text-editor.default">
@@ -119,13 +128,13 @@
                            <style>/*! elementor - v3.22.0 - 17-06-2024 */
                               .elementor-widget-text-editor.elementor-drop-cap-view-stacked .elementor-drop-cap{background-color:#69727d;color:#fff}.elementor-widget-text-editor.elementor-drop-cap-view-framed .elementor-drop-cap{color:#69727d;border:3px solid;background-color:transparent}.elementor-widget-text-editor:not(.elementor-drop-cap-view-default) .elementor-drop-cap{margin-top:8px}.elementor-widget-text-editor:not(.elementor-drop-cap-view-default) .elementor-drop-cap-letter{width:1em;height:1em}.elementor-widget-text-editor .elementor-drop-cap{float:left;text-align:center;line-height:1;font-size:50px}.elementor-widget-text-editor .elementor-drop-cap-letter{display:inline-block}
                            </style>
-                           This all-encompassing condominium brings your favorite amenities and lifestyle services together in one experience.						
+                           <?php echo esc_html($landmark_description ?: 'This all-encompassing condominium brings your favorite amenities and lifestyle services together in one experience.'); ?>
                         </div>
                      </div>
                      <div class="elementor-element elementor-element-c74437d elementor-button-type-link animated-fast elementor-widget elementor-widget-button animated opal-move-right" data-id="c74437d" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;opal-move-right&quot;}" data-widget_type="button.default">
                         <div class="elementor-widget-container">
                            <div class="elementor-button-wrapper">
-                              <a class="elementor-button elementor-button-link elementor-size-sm" href="https://demo2.wpopal.com/easto/residences/">
+                              <a class="elementor-button elementor-button-link elementor-size-sm" href="<?php echo esc_url($landmark_button_url ?: '#'); ?>">
                                  <span class="elementor-button-content-wrapper">
                                     <span class="elementor-button-icon">
                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
@@ -133,73 +142,35 @@
                                           <path d="M18.4 6l-1.68 1.75 6.72 7h-19.44v2.5h19.44l-6.72 7 1.68 1.75 9.6-10-9.6-10z" class="btn-icon__icon"></path>
                                        </svg>
                                     </span>
-                                    <span class="elementor-button-text">explore residences</span>
+                                    <span class="elementor-button-text"><?php echo esc_html($landmark_button_text ?: 'explore residences'); ?></span>
                                  </span>
                               </a>
                            </div>
                         </div>
                      </div>
                   </div>
-                  <div class="elementor-element elementor-element-ea02959 e-con-full animated-fast e-flex e-con e-child animated opal-move-up" data-id="ea02959" data-element_type="container" data-settings="{&quot;animation&quot;:&quot;opal-move-up&quot;}">
+                  <?php if ($landmark_counters) : $counter_delay = 0; foreach ($landmark_counters as $counter) : $delay_settings = $counter_delay > 0 ? '{&quot;animation&quot;:&quot;opal-move-up&quot;,&quot;animation_delay&quot;:' . $counter_delay . '}' : '{&quot;animation&quot;:&quot;opal-move-up&quot;}'; ?>
+                  <div class="elementor-element elementor-element-ea02959 e-con-full animated-fast e-flex e-con e-child animated opal-move-up" data-id="ea02959" data-element_type="container" data-settings="<?php echo $delay_settings; ?>">
                      <div class="elementor-element elementor-element-f8963da elementor-widget elementor-widget-easto-counter" data-id="f8963da" data-element_type="widget" data-widget_type="easto-counter.default">
                         <div class="elementor-widget-container">
                            <div class="elementor-counter">
                               <div class="elementor-counter-number-wrapper">
                                  <span class="elementor-counter-number-prefix"></span>
-                                 <span class="elementor-odometer-number odometer odometer-auto-theme" data-count="1250">
-                                    <div class="odometer-inside"><span class="odometer-digit"><span class="odometer-digit-spacer">8</span><span class="odometer-digit-inner"><span class="odometer-ribbon"><span class="odometer-ribbon-inner"><span class="odometer-value">1</span></span></span></span></span><span class="odometer-digit"><span class="odometer-digit-spacer">8</span><span class="odometer-digit-inner"><span class="odometer-ribbon"><span class="odometer-ribbon-inner"><span class="odometer-value">2</span></span></span></span></span><span class="odometer-digit"><span class="odometer-digit-spacer">8</span><span class="odometer-digit-inner"><span class="odometer-ribbon"><span class="odometer-ribbon-inner"><span class="odometer-value">5</span></span></span></span></span><span class="odometer-digit"><span class="odometer-digit-spacer">8</span><span class="odometer-digit-inner"><span class="odometer-ribbon"><span class="odometer-ribbon-inner"><span class="odometer-value">0</span></span></span></span></span></div>
+                                 <span class="elementor-odometer-number odometer odometer-auto-theme" data-count="<?php echo esc_attr($counter['number']); ?>">
+                                    <div class="odometer-inside"><span class="odometer-digit"><span class="odometer-digit-spacer">8</span><span class="odometer-digit-inner"><span class="odometer-ribbon"><span class="odometer-ribbon-inner"><span class="odometer-value">0</span></span></span></span></span></div>
                                  </span>
-                                 <span class="elementor-counter-number-suffix"></span>
+                                 <span class="elementor-counter-number-suffix"><?php echo esc_html($counter['suffix']); ?></span>
                               </div>
                            </div>
                         </div>
                      </div>
                      <div class="elementor-element elementor-element-48fe02b elementor-widget__width-initial elementor-widget elementor-widget-text-editor" data-id="48fe02b" data-element_type="widget" data-widget_type="text-editor.default">
                         <div class="elementor-widget-container">
-                           contemporary residential units for sale						
+                           <?php echo esc_html($counter['description']); ?>
                         </div>
                      </div>
                   </div>
-                  <div class="elementor-element elementor-element-69f403b e-con-full animated-fast e-flex e-con e-child animated opal-move-up" data-id="69f403b" data-element_type="container" data-settings="{&quot;animation&quot;:&quot;opal-move-up&quot;,&quot;animation_delay&quot;:300}">
-                     <div class="elementor-element elementor-element-7c7930b elementor-widget elementor-widget-easto-counter" data-id="7c7930b" data-element_type="widget" data-widget_type="easto-counter.default">
-                        <div class="elementor-widget-container">
-                           <div class="elementor-counter">
-                              <div class="elementor-counter-number-wrapper">
-                                 <span class="elementor-counter-number-prefix"></span>
-                                 <span class="elementor-odometer-number odometer odometer-auto-theme" data-count="746">
-                                    <div class="odometer-inside"><span class="odometer-digit"><span class="odometer-digit-spacer">8</span><span class="odometer-digit-inner"><span class="odometer-ribbon"><span class="odometer-ribbon-inner"><span class="odometer-value">7</span></span></span></span></span><span class="odometer-digit"><span class="odometer-digit-spacer">8</span><span class="odometer-digit-inner"><span class="odometer-ribbon"><span class="odometer-ribbon-inner"><span class="odometer-value">4</span></span></span></span></span><span class="odometer-digit"><span class="odometer-digit-spacer">8</span><span class="odometer-digit-inner"><span class="odometer-ribbon"><span class="odometer-ribbon-inner"><span class="odometer-value">6</span></span></span></span></span></div>
-                                 </span>
-                                 <span class="elementor-counter-number-suffix"></span>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="elementor-element elementor-element-2997ee7 elementor-widget__width-initial elementor-widget elementor-widget-text-editor" data-id="2997ee7" data-element_type="widget" data-widget_type="text-editor.default">
-                        <div class="elementor-widget-container">
-                           valet parking spaces available for rent						
-                        </div>
-                     </div>
-                  </div>
-                  <div class="elementor-element elementor-element-1101708 e-con-full animated-fast e-flex e-con e-child animated opal-move-up" data-id="1101708" data-element_type="container" data-settings="{&quot;animation&quot;:&quot;opal-move-up&quot;,&quot;animation_delay&quot;:600}">
-                     <div class="elementor-element elementor-element-3d37500 elementor-widget elementor-widget-easto-counter" data-id="3d37500" data-element_type="widget" data-widget_type="easto-counter.default">
-                        <div class="elementor-widget-container">
-                           <div class="elementor-counter">
-                              <div class="elementor-counter-number-wrapper">
-                                 <span class="elementor-counter-number-prefix"></span>
-                                 <span class="elementor-odometer-number odometer odometer-auto-theme" data-count="24">
-                                    <div class="odometer-inside"><span class="odometer-digit"><span class="odometer-digit-spacer">8</span><span class="odometer-digit-inner"><span class="odometer-ribbon"><span class="odometer-ribbon-inner"><span class="odometer-value">2</span></span></span></span></span><span class="odometer-digit"><span class="odometer-digit-spacer">8</span><span class="odometer-digit-inner"><span class="odometer-ribbon"><span class="odometer-ribbon-inner"><span class="odometer-value">4</span></span></span></span></span></div>
-                                 </span>
-                                 <span class="elementor-counter-number-suffix"></span>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="elementor-element elementor-element-bf7cef2 elementor-widget__width-initial elementor-widget elementor-widget-text-editor" data-id="bf7cef2" data-element_type="widget" data-widget_type="text-editor.default">
-                        <div class="elementor-widget-container">
-                           high speed passenger elevators						
-                        </div>
-                     </div>
-                  </div>
+                  <?php $counter_delay += 300; endforeach; endif; ?>
                </div>
             </div>
             <?php if ($amenities_items) : ?>

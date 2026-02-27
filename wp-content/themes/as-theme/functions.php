@@ -689,6 +689,47 @@ function as_theme_customize_register($wp_customize) {
 add_action('customize_register', 'as_theme_customize_register');
 
 /**
+ * Register Projects Custom Post Type
+ */
+function as_theme_register_projects_cpt() {
+    $labels = array(
+        'name'                  => __('Projects', 'as-theme'),
+        'singular_name'         => __('Project', 'as-theme'),
+        'menu_name'             => __('Projects', 'as-theme'),
+        'add_new'               => __('Add New', 'as-theme'),
+        'add_new_item'          => __('Add New Project', 'as-theme'),
+        'edit_item'             => __('Edit Project', 'as-theme'),
+        'new_item'              => __('New Project', 'as-theme'),
+        'view_item'             => __('View Project', 'as-theme'),
+        'view_items'            => __('View Projects', 'as-theme'),
+        'search_items'          => __('Search Projects', 'as-theme'),
+        'not_found'             => __('No projects found', 'as-theme'),
+        'not_found_in_trash'    => __('No projects found in Trash', 'as-theme'),
+        'all_items'             => __('All Projects', 'as-theme'),
+    );
+
+    $args = array(
+        'labels'             => $labels,
+        'public'             => true,
+        'publicly_queryable' => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'query_var'          => true,
+        'rewrite'            => array('slug' => 'projects'),
+        'capability_type'    => 'post',
+        'has_archive'        => true,
+        'hierarchical'       => false,
+        'menu_position'      => 5,
+        'menu_icon'          => 'dashicons-building',
+        'supports'           => array('title', 'editor', 'thumbnail'),
+        'show_in_rest'       => true,
+    );
+
+    register_post_type('projects', $args);
+}
+add_action('init', 'as_theme_register_projects_cpt');
+
+/**
  * Helper function to get theme mod with default
  */
 function as_theme_get_option($option, $default = '') {
