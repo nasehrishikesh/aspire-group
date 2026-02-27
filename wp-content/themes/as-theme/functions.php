@@ -110,6 +110,8 @@ function as_theme_enqueue_styles() {
 
     // Additional CSS files loaded in footer originally
     wp_enqueue_style('as-elementor-post-2295', AS_THEME_URI . '/assets/css/elementor-post-2295.css', array(), AS_THEME_VERSION);
+    wp_enqueue_style('as-elementor-post-5990', AS_THEME_URI . '/assets/css/elementor-post-5990.css', array(), AS_THEME_VERSION);
+     wp_enqueue_style('as-elementor-post-6134', AS_THEME_URI . '/assets/css/elementor-post-6134.css', array(), AS_THEME_VERSION);
     wp_enqueue_style('as-magnific-popup', AS_THEME_URI . '/assets/css/magnific-popup.css', array(), AS_THEME_VERSION);
     wp_enqueue_style('as-elementor-post-1782', AS_THEME_URI . '/assets/css/elementor-post-1782.css', array(), AS_THEME_VERSION);
     wp_enqueue_style('as-e-animations', AS_THEME_URI . '/assets/css/e-animations.css', array(), AS_THEME_VERSION);

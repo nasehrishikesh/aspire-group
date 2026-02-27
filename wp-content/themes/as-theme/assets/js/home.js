@@ -176,6 +176,54 @@ var elementorFrontendConfig = {
     }
 };
 
+// Amenities Swiper + Icon List Sync
+document.addEventListener('DOMContentLoaded', function() {
+    var amenitiesSwiperEl = document.querySelector('.amenities-swiper');
+    var navItems = document.querySelectorAll('.amenities-nav-item');
+
+    if (amenitiesSwiperEl && navItems.length > 0 && typeof Swiper !== 'undefined') {
+        var amenitiesSwiper = new Swiper('.amenities-swiper', {
+            slidesPerView: 1,
+            loop: true,
+            speed: 500,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.amenities-swiper-pagination',
+                clickable: true,
+                renderBullet: function (index, className) {
+                    return '<span class="' + className + '" data-number="' + String(index + 1).padStart(2, '0') + '" tabindex="0"></span>';
+                },
+            },
+        });
+
+        function updateActiveNavItem(realIndex) {
+            navItems.forEach(function(item) {
+                item.classList.remove('active');
+            });
+            if (navItems[realIndex]) {
+                navItems[realIndex].classList.add('active');
+            }
+        }
+
+        // Click icon list item → slide swiper
+        navItems.forEach(function(item) {
+            item.addEventListener('click', function() {
+                var slideIndex = parseInt(this.getAttribute('data-slide-index'), 10);
+                amenitiesSwiper.slideToLoop(slideIndex);
+                updateActiveNavItem(slideIndex);
+            });
+        });
+
+        // Swiper slide change → update active list item
+        amenitiesSwiper.on('slideChange', function() {
+            updateActiveNavItem(amenitiesSwiper.realIndex);
+        });
+    }
+});
+
 // Counter Animation on Scroll
 document.addEventListener('DOMContentLoaded', function() {
     const counters = document.querySelectorAll('.elementor-counter-number');

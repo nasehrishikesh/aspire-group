@@ -1921,3 +1921,155 @@ function as_theme_register_contact_acf_fields() {
     ));
 }
 add_action('acf/init', 'as_theme_register_contact_acf_fields');
+
+/**
+ * Register ACF Field Groups for Project Detail Page
+ */
+function as_theme_register_project_detail_acf_fields() {
+    if (!function_exists('acf_add_local_field_group')) {
+        return;
+    }
+
+    // Project Detail Welcome Section
+    acf_add_local_field_group(array(
+        'key' => 'group_project_welcome_section',
+        'title' => 'Welcome Section',
+        'fields' => array(
+            array(
+                'key' => 'field_project_welcome_subtitle',
+                'label' => 'Subtitle',
+                'name' => 'project_welcome_subtitle',
+                'type' => 'text',
+                'default_value' => 'welcome home',
+            ),
+            array(
+                'key' => 'field_project_welcome_title',
+                'label' => 'Title',
+                'name' => 'project_welcome_title',
+                'type' => 'text',
+            ),
+            array(
+                'key' => 'field_project_welcome_description',
+                'label' => 'Description',
+                'name' => 'project_welcome_description',
+                'type' => 'wysiwyg',
+                'media_upload' => 0,
+            ),
+            array(
+                'key' => 'field_project_welcome_button_text',
+                'label' => 'Button Text',
+                'name' => 'project_welcome_button_text',
+                'type' => 'text',
+                'default_value' => 'explore residences',
+            ),
+            array(
+                'key' => 'field_project_welcome_button_action',
+                'label' => 'Button Action',
+                'name' => 'project_welcome_button_action',
+                'type' => 'select',
+                'choices' => array(
+                    'link' => 'Open Link',
+                    'popup' => 'Open Popup Form',
+                ),
+                'default_value' => 'link',
+            ),
+            array(
+                'key' => 'field_project_welcome_button_url',
+                'label' => 'Button URL',
+                'name' => 'project_welcome_button_url',
+                'type' => 'url',
+                'conditional_logic' => array(
+                    array(
+                        array(
+                            'field' => 'field_project_welcome_button_action',
+                            'operator' => '==',
+                            'value' => 'link',
+                        ),
+                    ),
+                ),
+            ),
+            array(
+                'key' => 'field_project_welcome_image',
+                'label' => 'Section Image',
+                'name' => 'project_welcome_image',
+                'type' => 'image',
+                'return_format' => 'url',
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'page_template',
+                    'operator' => '==',
+                    'value' => 'template-project-detail.php',
+                ),
+            ),
+        ),
+        'menu_order' => 0,
+        'position' => 'normal',
+        'style' => 'default',
+    ));
+}
+add_action('acf/init', 'as_theme_register_project_detail_acf_fields');
+
+/**
+ * Register ACF Field Groups for Project Detail - Amenities Section
+ */
+function as_theme_register_project_amenities_acf_fields() {
+    if (!function_exists('acf_add_local_field_group')) {
+        return;
+    }
+
+    acf_add_local_field_group(array(
+        'key' => 'group_project_amenities_section',
+        'title' => 'Amenities Section',
+        'fields' => array(
+            array(
+                'key' => 'field_project_amenities_heading',
+                'label' => 'Section Heading',
+                'name' => 'project_amenities_heading',
+                'type' => 'text',
+                'default_value' => 'Wellness',
+            ),
+            array(
+                'key' => 'field_project_amenities_items',
+                'label' => 'Amenities',
+                'name' => 'project_amenities_items',
+                'type' => 'repeater',
+                'min' => 1,
+                'max' => 20,
+                'layout' => 'block',
+                'sub_fields' => array(
+                    array(
+                        'key' => 'field_project_amenity_title',
+                        'label' => 'Title',
+                        'name' => 'title',
+                        'type' => 'text',
+                        'required' => 1,
+                    ),
+                    array(
+                        'key' => 'field_project_amenity_image',
+                        'label' => 'Image',
+                        'name' => 'image',
+                        'type' => 'image',
+                        'return_format' => 'url',
+                        'required' => 1,
+                    ),
+                ),
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'page_template',
+                    'operator' => '==',
+                    'value' => 'template-project-detail.php',
+                ),
+            ),
+        ),
+        'menu_order' => 1,
+        'position' => 'normal',
+        'style' => 'default',
+    ));
+}
+add_action('acf/init', 'as_theme_register_project_amenities_acf_fields');
