@@ -270,25 +270,19 @@
                         <?php if ($team_members) : ?>
                         <div class="elementor-element elementor-element-82a602e e-flex e-con-boxed e-con e-parent e-lazyloaded" data-id="82a602e" data-element_type="container">
                            <div class="e-con-inner col-full">
-                              <?php if ($team_subtitle) : ?>
-                              <div class="elementor-element elementor-element-bcda7de e-transform animated-fast elementor-widget elementor-widget-text-editor animated opal-move-up" data-id="bcda7de" data-element_type="widget" data-settings='{"_animation":"opal-move-up"}' data-widget_type="text-editor.default">
-                                 <div class="elementor-widget-container">
-                                    <?php echo esc_html($team_subtitle); ?>
-                                 </div>
-                              </div>
-                              <?php endif; ?>
-                              <?php if ($team_title) : ?>
-                              <div class="elementor-element elementor-element-a4536f3 animated-fast elementor-widget elementor-widget-heading animated opal-move-up" data-id="a4536f3" data-element_type="widget" data-settings='{"_animation":"opal-move-up"}' data-widget_type="heading.default">
-                                 <div class="elementor-widget-container">
-                                    <h2 class="elementor-heading-title elementor-size-default"><?php echo esc_html($team_title); ?></h2>
-                                 </div>
-                              </div>
-                              <?php endif; ?>
                               <div class="elementor-element elementor-element-52dbac9 animated-fast elementor-widget-mobile__width-inherit elementor-widget elementor-widget-easto-team-box animated opal-move-up" data-id="52dbac9" data-element_type="widget" data-settings='{"_animation":"opal-move-up"}' data-widget_type="easto-team-box.default">
                                  <div class="elementor-widget-container">
                                     <div class="elementor-teambox-item-wrapper">
                                        <div class="elementor-teambox-wrapper-inner">
-                                          <div class="d-grid">
+                                          <div class="d-grid team-custom-grid">
+                                             <div class="team-header-block grid-item">
+                                                 <?php if ($team_subtitle) : ?>
+                                                 <div class="team-subtitle"><?php echo esc_html($team_subtitle); ?></div>
+                                                 <?php endif; ?>
+                                                 <?php if ($team_title) : ?>
+                                                 <h2 class="team-title"><?php echo nl2br(esc_html($team_title)); ?></h2>
+                                                 <?php endif; ?>
+                                             </div>
                                              <?php foreach ($team_members as $index => $member) : ?>
                                              <div class="elementor-teambox-item grid-item" data-goto="<?php echo $index; ?>">
                                                 <div class="teambox-item-inner">

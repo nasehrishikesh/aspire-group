@@ -222,6 +222,7 @@ function as_theme_register_acf_fields() {
                         'type' => 'select',
                         'choices' => array(
                             'link' => 'Open Link',
+                            'page' => 'Open Page',
                             'popup' => 'Open Popup Form',
                         ),
                         'default_value' => 'link',
@@ -239,6 +240,31 @@ function as_theme_register_acf_fields() {
                                     'field' => 'field_slide_button_action',
                                     'operator' => '==',
                                     'value' => 'link',
+                                ),
+                            ),
+                        ),
+                    ),
+
+array(
+                        'key' => 'field_slide_button_page',
+                        'label' => 'Button Page',
+                        'name' => 'button_page',
+                        'type' => 'page_link',
+                        'post_type' => array(
+                            0 => 'page',
+                            1 => 'post',
+                            2 => 'residences',
+                            3 => 'amenities',
+                            4 => 'neighborhood',
+                            5 => 'apartments',
+                        ),
+                        'wrapper' => array('width' => '33'),
+                        'conditional_logic' => array(
+                            array(
+                                array(
+                                    'field' => 'field_slide_button_action',
+                                    'operator' => '==',
+                                    'value' => 'page',
                                 ),
                             ),
                         ),
@@ -381,9 +407,10 @@ function as_theme_register_acf_fields() {
                 'name' => 'welcome_button_action',
                 'type' => 'select',
                 'choices' => array(
-                    'link' => 'Open Link',
-                    'popup' => 'Open Popup Form',
-                ),
+                            'link' => 'Open Link',
+                            'page' => 'Open Page',
+                            'popup' => 'Open Popup Form',
+                        ),
                 'default_value' => 'link',
             ),
             array(
@@ -397,6 +424,30 @@ function as_theme_register_acf_fields() {
                             'field' => 'field_welcome_button_action',
                             'operator' => '==',
                             'value' => 'link',
+                        ),
+                    ),
+                ),
+            ),
+
+array(
+                'key' => 'field_welcome_button_page',
+                'label' => 'Button Page',
+                'name' => 'welcome_button_page',
+                'type' => 'page_link',
+                        'post_type' => array(
+                            0 => 'page',
+                            1 => 'post',
+                            2 => 'residences',
+                            3 => 'amenities',
+                            4 => 'neighborhood',
+                            5 => 'apartments',
+                        ),
+                'conditional_logic' => array(
+                    array(
+                        array(
+                            'field' => 'field_welcome_button_action',
+                            'operator' => '==',
+                            'value' => 'page',
                         ),
                     ),
                 ),
@@ -552,9 +603,10 @@ function as_theme_register_acf_fields() {
                 'name' => 'residences_button_action',
                 'type' => 'select',
                 'choices' => array(
-                    'link' => 'Open Link',
-                    'popup' => 'Open Popup Form',
-                ),
+                            'link' => 'Open Link',
+                            'page' => 'Open Page',
+                            'popup' => 'Open Popup Form',
+                        ),
                 'default_value' => 'link',
             ),
             array(
@@ -568,6 +620,30 @@ function as_theme_register_acf_fields() {
                             'field' => 'field_residences_button_action',
                             'operator' => '==',
                             'value' => 'link',
+                        ),
+                    ),
+                ),
+            ),
+
+array(
+                'key' => 'field_residences_button_page',
+                'label' => 'Button Page',
+                'name' => 'residences_button_page',
+                'type' => 'page_link',
+                        'post_type' => array(
+                            0 => 'page',
+                            1 => 'post',
+                            2 => 'residences',
+                            3 => 'amenities',
+                            4 => 'neighborhood',
+                            5 => 'apartments',
+                        ),
+                'conditional_logic' => array(
+                    array(
+                        array(
+                            'field' => 'field_residences_button_action',
+                            'operator' => '==',
+                            'value' => 'page',
                         ),
                     ),
                 ),
@@ -615,6 +691,7 @@ function as_theme_register_acf_fields() {
                         'type' => 'select',
                         'choices' => array(
                             'link' => 'Open Link',
+                            'page' => 'Open Page',
                             'popup' => 'Open Popup Form',
                         ),
                         'default_value' => 'link',
@@ -630,6 +707,30 @@ function as_theme_register_acf_fields() {
                                     'field' => 'field_residence_card_button_action',
                                     'operator' => '==',
                                     'value' => 'link',
+                                ),
+                            ),
+                        ),
+                    ),
+
+array(
+                        'key' => 'field_residence_card_button_page',
+                        'label' => 'Button Page',
+                        'name' => 'button_page',
+                        'type' => 'page_link',
+                        'post_type' => array(
+                            0 => 'page',
+                            1 => 'post',
+                            2 => 'residences',
+                            3 => 'amenities',
+                            4 => 'neighborhood',
+                            5 => 'apartments',
+                        ),
+                        'conditional_logic' => array(
+                            array(
+                                array(
+                                    'field' => 'field_residence_card_button_action',
+                                    'operator' => '==',
+                                    'value' => 'page',
                                 ),
                             ),
                         ),
@@ -778,9 +879,10 @@ function as_theme_register_acf_fields() {
                 'name' => 'amenities_button_action',
                 'type' => 'select',
                 'choices' => array(
-                    'link' => 'Open Link',
-                    'popup' => 'Open Popup Form',
-                ),
+                            'link' => 'Open Link',
+                            'page' => 'Open Page',
+                            'popup' => 'Open Popup Form',
+                        ),
                 'default_value' => 'link',
             ),
             array(
@@ -794,6 +896,30 @@ function as_theme_register_acf_fields() {
                             'field' => 'field_amenities_button_action',
                             'operator' => '==',
                             'value' => 'link',
+                        ),
+                    ),
+                ),
+            ),
+
+array(
+                'key' => 'field_amenities_button_page',
+                'label' => 'Button Page',
+                'name' => 'amenities_button_page',
+                'type' => 'page_link',
+                        'post_type' => array(
+                            0 => 'page',
+                            1 => 'post',
+                            2 => 'residences',
+                            3 => 'amenities',
+                            4 => 'neighborhood',
+                            5 => 'apartments',
+                        ),
+                'conditional_logic' => array(
+                    array(
+                        array(
+                            'field' => 'field_amenities_button_action',
+                            'operator' => '==',
+                            'value' => 'page',
                         ),
                     ),
                 ),
@@ -1147,9 +1273,10 @@ function as_theme_register_acf_fields() {
                 'name' => 'neighborhood_button_action',
                 'type' => 'select',
                 'choices' => array(
-                    'link' => 'Open Link',
-                    'popup' => 'Open Popup Form',
-                ),
+                            'link' => 'Open Link',
+                            'page' => 'Open Page',
+                            'popup' => 'Open Popup Form',
+                        ),
                 'default_value' => 'link',
             ),
             array(
@@ -1163,6 +1290,30 @@ function as_theme_register_acf_fields() {
                             'field' => 'field_neighborhood_button_action',
                             'operator' => '==',
                             'value' => 'link',
+                        ),
+                    ),
+                ),
+            ),
+
+array(
+                'key' => 'field_neighborhood_button_page',
+                'label' => 'Button Page',
+                'name' => 'neighborhood_button_page',
+                'type' => 'page_link',
+                        'post_type' => array(
+                            0 => 'page',
+                            1 => 'post',
+                            2 => 'residences',
+                            3 => 'amenities',
+                            4 => 'neighborhood',
+                            5 => 'apartments',
+                        ),
+                'conditional_logic' => array(
+                    array(
+                        array(
+                            'field' => 'field_neighborhood_button_action',
+                            'operator' => '==',
+                            'value' => 'page',
                         ),
                     ),
                 ),
@@ -1259,9 +1410,10 @@ function as_theme_register_acf_fields() {
                 'name' => 'about_button_action',
                 'type' => 'select',
                 'choices' => array(
-                    'link' => 'Open Link',
-                    'popup' => 'Open Popup Form',
-                ),
+                            'link' => 'Open Link',
+                            'page' => 'Open Page',
+                            'popup' => 'Open Popup Form',
+                        ),
                 'default_value' => 'link',
             ),
             array(
@@ -1275,6 +1427,30 @@ function as_theme_register_acf_fields() {
                             'field' => 'field_about_button_action',
                             'operator' => '==',
                             'value' => 'link',
+                        ),
+                    ),
+                ),
+            ),
+
+array(
+                'key' => 'field_about_button_page',
+                'label' => 'Button Page',
+                'name' => 'about_button_page',
+                'type' => 'page_link',
+                        'post_type' => array(
+                            0 => 'page',
+                            1 => 'post',
+                            2 => 'residences',
+                            3 => 'amenities',
+                            4 => 'neighborhood',
+                            5 => 'apartments',
+                        ),
+                'conditional_logic' => array(
+                    array(
+                        array(
+                            'field' => 'field_about_button_action',
+                            'operator' => '==',
+                            'value' => 'page',
                         ),
                     ),
                 ),

@@ -10,9 +10,13 @@
                     <div class="e-con-inner">
                         <div class="elementor-element elementor-element-6b36993 e-con-full e-flex e-con e-child" data-id="6b36993" data-element_type="container">
                             <div class="elementor-element elementor-element-e5aa90c e-con-full e-flex e-con e-child" data-id="e5aa90c" data-element_type="container">
-                                <div class="elementor-element elementor-element-7d5e9c4 elementor-widget elementor-widget-heading" data-id="7d5e9c4" data-element_type="widget" data-widget_type="heading.default">
+                                <div class="elementor-element elementor-element-7d5e9c4 elementor-widget" data-id="7d5e9c4" data-element_type="widget">
                                     <div class="elementor-widget-container">
-                                        <h5 class="elementor-heading-title elementor-size-default"><?php esc_html_e('Sale Gallery', 'as-theme'); ?></h5>
+                                        <?php $footer_logo = get_theme_mod('footer_logo'); ?>
+                                        <?php if ($footer_logo) : ?>
+                                            <img src="<?php echo esc_url($footer_logo); ?>" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" style="max-width: 150px; margin-bottom: 15px;">
+                                        <?php endif; ?>
+                                        <p class="footer-description" style="color: #ffffff;"><?php echo wp_kses_post(get_theme_mod('footer_content', 'Trusted name in Pune\'s real estate, delivering quality residential and commercial spaces with excellence and integrity.')); ?></p>
                                     </div>
                                 </div>
                                 <div class="elementor-element elementor-element-3bceac6 elementor-widget elementor-widget-text-editor" data-id="3bceac6" data-element_type="widget" data-widget_type="text-editor.default">
@@ -178,35 +182,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="elementor-element elementor-element-ede2230 e-flex e-con-boxed e-con e-parent" data-id="ede2230" data-element_type="container">
-                    <div class="e-con-inner">
-                        <div class="elementor-element elementor-element-c3809ec e-con-full e-flex e-con e-child" data-id="c3809ec" data-element_type="container">
-                            <?php
-                            $footer_logo = get_theme_mod('footer_logo');
-                            if ($footer_logo) : ?>
-                            <div class="elementor-element elementor-element-d4c15ed elementor-widget elementor-widget-site-logo" data-id="d4c15ed" data-element_type="widget" data-widget_type="site-logo.default">
-                                <div class="elementor-widget-container">
-                                    <div class="hfe-site-logo">
-                                        <a data-elementor-open-lightbox="" class="elementor-clickable" href="<?php echo esc_url(home_url('/')); ?>">
-                                            <div class="hfe-site-logo-set">
-                                                <div class="hfe-site-logo-container">
-                                                    <img class="hfe-site-logo-img elementor-animation-" src="<?php echo esc_url($footer_logo); ?>" alt="<?php bloginfo('name'); ?>">
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <?php else : ?>
-                            <div class="elementor-element elementor-element-d4c15ed elementor-widget elementor-widget-heading" data-id="d4c15ed" data-element_type="widget" data-widget_type="heading.default">
-                                <div class="elementor-widget-container">
-                                    <h2 class="elementor-heading-title elementor-size-default"><?php bloginfo('name'); ?></h2>
-                                </div>
-                            </div>
-                            <?php endif; ?>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="elementor-element elementor-element-0358cbd e-flex e-con-boxed e-con e-parent" data-id="0358cbd" data-element_type="container">
                     <div class="e-con-inner">
                         <div class="elementor-element elementor-element-48061a3 elementor-widget elementor-widget-text-editor" data-id="48061a3" data-element_type="widget" data-widget_type="text-editor.default">

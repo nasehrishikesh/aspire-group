@@ -1,6 +1,6 @@
 .elementor-36 .elementor-element.elementor-element-3aea32a {
   --display: flex;
-  --min-height: 1020px;
+  --min-height: 100vh;
   --justify-content: center;
   --align-items: center;
   --container-widget-width: calc(
@@ -64,7 +64,7 @@
   .elementor-element.elementor-element-2feb0bc
   .elementor-heading-title {
   color: #ffffff;
-  font-size: 140px;
+  font-size: 82px;
 }
 .elementor-36 .elementor-element.elementor-element-efc9b3e {
   --display: flex;
@@ -95,7 +95,7 @@
   .elementor-element.elementor-element-3d60cb1
   .elementor-heading-title {
   color: #ffffff;
-  font-size: 140px;
+  font-size: 82px;
 }
 .elementor-36
   .elementor-element.elementor-element-3d60cb1
@@ -104,7 +104,7 @@
 }
 .elementor-36 .elementor-element.elementor-element-c7249c0 {
   --display: flex;
-  --min-height: 110px;
+  --min-height: 60px;
   --justify-content: center;
   --background-transition: 0.3s;
   --border-radius: 60px 60px 60px 60px;
@@ -355,7 +355,7 @@
   .elementor-element.elementor-element-510b40f
   .elementor-heading-title {
   color: #ffffff;
-  font-size: 140px;
+  font-size: 82px;
   line-height: 1.077em;
 }
 .elementor-36 .elementor-element.elementor-element-510b40f {
@@ -368,7 +368,7 @@
   .elementor-element.elementor-element-c67ccaa
   .elementor-heading-title {
   color: #ffffff;
-  font-size: 140px;
+  font-size: 82px;
   line-height: 1.077em;
 }
 .elementor-36 .elementor-element.elementor-element-c67ccaa {
@@ -381,7 +381,7 @@
   .elementor-element.elementor-element-bd7c9d4
   .elementor-heading-title {
   color: #ffffff;
-  font-size: 140px;
+  font-size: 82px;
   line-height: 1.077em;
 }
 .elementor-36 .elementor-element.elementor-element-bd7c9d4 {
@@ -2695,12 +2695,12 @@ body:not(.rtl)
   .elementor-36
     .elementor-element.elementor-element-2feb0bc
     .elementor-heading-title {
-    font-size: 100px;
+    font-size: 60px;
   }
   .elementor-36
     .elementor-element.elementor-element-3d60cb1
     .elementor-heading-title {
-    font-size: 100px;
+    font-size: 60px;
   }
   .elementor-36
     .elementor-element.elementor-element-c600517
@@ -2725,17 +2725,17 @@ body:not(.rtl)
   .elementor-36
     .elementor-element.elementor-element-510b40f
     .elementor-heading-title {
-    font-size: 100px;
+    font-size: 60px;
   }
   .elementor-36
     .elementor-element.elementor-element-c67ccaa
     .elementor-heading-title {
-    font-size: 100px;
+    font-size: 60px;
   }
   .elementor-36
     .elementor-element.elementor-element-bd7c9d4
     .elementor-heading-title {
-    font-size: 100px;
+    font-size: 60px;
   }
   .elementor-36 .elementor-element.elementor-element-bb54ffa {
     --grid-auto-flow: row;
@@ -3015,7 +3015,7 @@ body:not(.rtl)
   .elementor-36
     .elementor-element.elementor-element-510b40f
     .elementor-heading-title {
-    font-size: 90px;
+    font-size: 52px;
   }
   .elementor-36 .elementor-element.elementor-element-510b40f {
     --container-widget-width: 450px;
@@ -3026,7 +3026,7 @@ body:not(.rtl)
   .elementor-36
     .elementor-element.elementor-element-c67ccaa
     .elementor-heading-title {
-    font-size: 90px;
+    font-size: 52px;
   }
   .elementor-36 .elementor-element.elementor-element-c67ccaa {
     --container-widget-width: 450px;
@@ -3037,7 +3037,7 @@ body:not(.rtl)
   .elementor-36
     .elementor-element.elementor-element-bd7c9d4
     .elementor-heading-title {
-    font-size: 90px;
+    font-size: 52px;
   }
   .elementor-36 .elementor-element.elementor-element-bd7c9d4 {
     --container-widget-width: 450px;
@@ -3208,7 +3208,7 @@ body:not(.rtl)
   .elementor-36
     .elementor-element.elementor-element-2feb0bc
     .elementor-heading-title {
-    font-size: 80px;
+    font-size: 48px;
   }
   .elementor-36 .elementor-element.elementor-element-2feb0bc {
     width: var(--container-widget-width, 500px);
@@ -3219,7 +3219,7 @@ body:not(.rtl)
   .elementor-36
     .elementor-element.elementor-element-3d60cb1
     .elementor-heading-title {
-    font-size: 80px;
+    font-size: 48px;
   }
   .elementor-36
     .elementor-element.elementor-element-c600517
@@ -3272,17 +3272,17 @@ body:not(.rtl)
   .elementor-36
     .elementor-element.elementor-element-510b40f
     .elementor-heading-title {
-    font-size: 80px;
+    font-size: 48px;
   }
   .elementor-36
     .elementor-element.elementor-element-c67ccaa
     .elementor-heading-title {
-    font-size: 80px;
+    font-size: 48px;
   }
   .elementor-36
     .elementor-element.elementor-element-bd7c9d4
     .elementor-heading-title {
-    font-size: 80px;
+    font-size: 48px;
   }
   .elementor-36 .elementor-element.elementor-element-bb54ffa {
     --grid-auto-flow: row;
@@ -3591,12 +3591,12 @@ body:not(.rtl)
   .elementor-36
     .elementor-element.elementor-element-2feb0bc
     .elementor-heading-title {
-    font-size: 66px;
+    font-size: 40px;
   }
   .elementor-36
     .elementor-element.elementor-element-3d60cb1
     .elementor-heading-title {
-    font-size: 66px;
+    font-size: 40px;
   }
   .elementor-36 .elementor-element.elementor-element-bb54ffa {
     --grid-auto-flow: row;

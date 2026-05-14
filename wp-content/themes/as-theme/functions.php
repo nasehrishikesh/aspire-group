@@ -596,6 +596,18 @@ function as_theme_customize_register($wp_customize) {
         'priority' => 131,
     ));
 
+    // Footer Content/Description
+    $wp_customize->add_setting('footer_content', array(
+        'default'           => 'Trusted name in Pune\'s real estate, delivering quality residential and commercial spaces with excellence and integrity.',
+        'sanitize_callback' => 'wp_kses_post',
+    ));
+
+    $wp_customize->add_control('footer_content', array(
+        'label'   => __('Footer Description', 'as-theme'),
+        'section' => 'as_theme_contact_info',
+        'type'    => 'textarea',
+    ));
+
     // Address
     $wp_customize->add_setting('site_address', array(
         'default'           => '2972 Westheimer Rd. Santa Ana, Illinois 85486',
