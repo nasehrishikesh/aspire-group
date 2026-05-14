@@ -392,7 +392,7 @@
                            <?php endif; ?>
                            <?php if (!empty($slide['button_text'])) :
                               $slide_button_action = $slide['button_action'] ?? 'link';
-                              $slide_btn_url = ($slide_button_action === 'link') ? ($slide['button_url'] ?? '#') : '#easto-button-popup-8feb59a';
+                              $slide_btn_url = ($slide_button_action === 'link') ? ($slide['button_url'] ?? '#') : (($slide_button_action === 'page') ? ($slide['button_page'] ?? '#') : '#easto-button-popup-8feb59a');
                               $slide_popup_class = ($slide_button_action === 'popup') ? ' button-popup' : '';
                               $slide_popup_effect = ($slide_button_action === 'popup') ? ' data-effect="mfp-zoom-in"' : '';
                            ?>
@@ -483,7 +483,7 @@
                </div>
             </div>
             <?php
-            $welcome_btn_url = ($welcome_button_action === 'link') ? $welcome_button_url : '#easto-button-popup-8feb59a';
+            $welcome_btn_url = ($welcome_button_action === 'link') ? $welcome_button_url : (($welcome_button_action === 'page') ? get_field('welcome_button_page') : '#easto-button-popup-8feb59a');
             $welcome_popup_class = ($welcome_button_action === 'popup') ? ' button-popup' : '';
             $welcome_popup_effect = ($welcome_button_action === 'popup') ? ' data-effect="mfp-zoom-in"' : '';
             ?>
@@ -562,7 +562,7 @@
                               </div>
                               <?php
                               $button_action = $card['button_action'] ?? 'link';
-                              $button_url = ($button_action === 'link') ? ($card['button_url'] ?? '#') : '#easto-button-popup-8feb59a';
+                              $button_url = ($button_action === 'link') ? ($card['button_url'] ?? '#') : (($button_action === 'page') ? ($card['button_page'] ?? '#') : '#easto-button-popup-8feb59a');
                               $popup_class = ($button_action === 'popup') ? ' button-popup' : '';
                               $popup_effect = ($button_action === 'popup') ? ' data-effect="mfp-zoom-in"' : '';
                               ?>
@@ -718,7 +718,7 @@
                </div>
             </div>
             <?php
-            $amenities_btn_url = ($amenities_button_action === 'link') ? $amenities_button_url : '#easto-button-popup-8feb59a';
+            $amenities_btn_url = ($amenities_button_action === 'link') ? $amenities_button_url : (($amenities_button_action === 'page') ? get_field('amenities_button_page') : '#easto-button-popup-8feb59a');
             $amenities_popup_class = ($amenities_button_action === 'popup') ? ' button-popup' : '';
             $amenities_popup_effect = ($amenities_button_action === 'popup') ? ' data-effect="mfp-zoom-in"' : '';
             ?>
@@ -984,7 +984,7 @@
                      </div>
                   </div>
                   <?php
-                  $neighborhood_btn_url = ($neighborhood_button_action === 'link') ? $neighborhood_button_url : '#easto-button-popup-8feb59a';
+                  $neighborhood_btn_url = ($neighborhood_button_action === 'link') ? $neighborhood_button_url : (($neighborhood_button_action === 'page') ? get_field('neighborhood_button_page') : '#easto-button-popup-8feb59a');
                   $neighborhood_popup_class = ($neighborhood_button_action === 'popup') ? ' button-popup' : '';
                   $neighborhood_popup_effect = ($neighborhood_button_action === 'popup') ? ' data-effect="mfp-zoom-in"' : '';
                   ?>
@@ -1099,7 +1099,7 @@
                </div>
             </div>
             <?php
-            $about_btn_url = ($about_button_action === 'link') ? $about_button_url : '#easto-button-popup-8feb59a';
+            $about_btn_url = ($about_button_action === 'link') ? $about_button_url : (($about_button_action === 'page') ? get_field('about_button_page') : '#easto-button-popup-8feb59a');
             $about_popup_class = ($about_button_action === 'popup') ? ' button-popup' : '';
             $about_popup_effect = ($about_button_action === 'popup') ? ' data-effect="mfp-zoom-in"' : '';
             ?>
