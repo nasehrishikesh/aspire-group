@@ -340,6 +340,58 @@
            );
        }
    }
+
+   /**
+    * Pull selected Project Detail posts for each Home page project section.
+    * If projects are selected on the Home page, they override the legacy
+    * repeater content. Otherwise, the existing default content is preserved.
+    */
+   $home_ongoing_ids  = get_field('home_ongoing_projects');
+   $home_upcoming_ids = get_field('home_upcoming_projects');
+   $home_apt_ids      = get_field('home_apartments_projects');
+
+   if (!empty($home_ongoing_ids) && is_array($home_ongoing_ids)) {
+       $residences_cards = array();
+       foreach ($home_ongoing_ids as $pid) {
+           $residences_cards[] = array(
+               'title'         => get_the_title($pid),
+               'description'   => get_field('project_card_description', $pid),
+               'image'         => get_field('project_card_image', $pid),
+               'button_text'   => get_field('project_card_button_text', $pid) ?: 'Learn More',
+               'button_action' => 'link',
+               'button_url'    => get_permalink($pid),
+           );
+       }
+   }
+
+   if (!empty($home_upcoming_ids) && is_array($home_upcoming_ids)) {
+       $amenities_banners = array();
+       foreach ($home_upcoming_ids as $pid) {
+           $amenities_banners[] = array(
+               'title'       => get_the_title($pid),
+               'location'    => get_field('project_card_location', $pid),
+               'description' => get_field('project_card_description', $pid),
+               'media_type'  => get_field('project_card_media_type', $pid) ?: 'image',
+               'video_url'   => get_field('project_card_video_url', $pid),
+               'image'       => get_field('project_card_image', $pid),
+               'link'        => get_permalink($pid),
+           );
+       }
+   }
+
+   if (!empty($home_apt_ids) && is_array($home_apt_ids)) {
+       $apartments_slider = array();
+       foreach ($home_apt_ids as $pid) {
+           $apartments_slider[] = array(
+               'title' => get_the_title($pid),
+               'image' => get_field('project_card_image', $pid),
+               'beds'  => get_field('project_card_beds', $pid),
+               'baths' => get_field('project_card_baths', $pid),
+               'sqft'  => get_field('project_card_sqft', $pid),
+               'link'  => get_permalink($pid),
+           );
+       }
+   }
    ?>
 <div data-elementor-type="wp-page" data-elementor-id="36" class="elementor elementor-36">
    <!-- Hero Section -->

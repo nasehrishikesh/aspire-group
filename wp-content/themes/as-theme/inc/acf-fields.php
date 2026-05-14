@@ -2452,3 +2452,257 @@ function as_theme_register_project_landmark_acf_fields() {
     ));
 }
 add_action('acf/init', 'as_theme_register_project_landmark_acf_fields');
+
+/**
+ * Register ACF Field Groups for Project Detail - Card / Listing fields
+ *
+ * These fields are used on the Home page sections (Ongoing / Upcoming / Apartments)
+ * as well as the Project Listing page tabs.
+ */
+function as_theme_register_project_card_acf_fields() {
+    if (!function_exists('acf_add_local_field_group')) {
+        return;
+    }
+
+    acf_add_local_field_group(array(
+        'key' => 'group_project_card_fields',
+        'title' => 'Project Card / Status',
+        'fields' => array(
+            array(
+                'key' => 'field_project_status',
+                'label' => 'Project Status / Category',
+                'name' => 'project_status',
+                'type' => 'select',
+                'instructions' => 'Determines which tab this project appears under on the Project Listing page and is the default category for Home page sections.',
+                'choices' => array(
+                    'upcoming'  => 'Upcoming Project',
+                    'ongoing'   => 'Ongoing Project',
+                    'completed' => 'Completed Project',
+                ),
+                'default_value' => 'ongoing',
+                'required' => 1,
+                'return_format' => 'value',
+            ),
+            array(
+                'key' => 'field_project_card_image',
+                'label' => 'Card Image',
+                'name' => 'project_card_image',
+                'type' => 'image',
+                'instructions' => 'Used as the main image in Home page sections and on the Project Listing cards.',
+                'return_format' => 'url',
+            ),
+            array(
+                'key' => 'field_project_card_subtitle',
+                'label' => 'Card Subtitle (optional)',
+                'name' => 'project_card_subtitle',
+                'type' => 'text',
+                'instructions' => 'Optional subtitle shown on the project card.',
+            ),
+            array(
+                'key' => 'field_project_card_location',
+                'label' => 'Location',
+                'name' => 'project_card_location',
+                'type' => 'text',
+                'instructions' => 'Shown on Upcoming Project / Listing card.',
+            ),
+            array(
+                'key' => 'field_project_card_description',
+                'label' => 'Short Description',
+                'name' => 'project_card_description',
+                'type' => 'textarea',
+                'rows' => 3,
+                'instructions' => 'Short text shown on Ongoing / Upcoming cards and the listing card.',
+            ),
+            array(
+                'key' => 'field_project_card_media_type',
+                'label' => 'Card Media Type (Upcoming)',
+                'name' => 'project_card_media_type',
+                'type' => 'select',
+                'instructions' => 'For Upcoming Projects section banner: choose image or background video.',
+                'choices' => array(
+                    'image' => 'Image',
+                    'video' => 'Video',
+                ),
+                'default_value' => 'image',
+                'return_format' => 'value',
+            ),
+            array(
+                'key' => 'field_project_card_video_url',
+                'label' => 'Card Video URL',
+                'name' => 'project_card_video_url',
+                'type' => 'url',
+                'conditional_logic' => array(
+                    array(
+                        array(
+                            'field' => 'field_project_card_media_type',
+                            'operator' => '==',
+                            'value' => 'video',
+                        ),
+                    ),
+                ),
+            ),
+            array(
+                'key' => 'field_project_card_beds',
+                'label' => 'Bedrooms',
+                'name' => 'project_card_beds',
+                'type' => 'number',
+                'instructions' => 'Used on Apartments cards.',
+            ),
+            array(
+                'key' => 'field_project_card_baths',
+                'label' => 'Bathrooms',
+                'name' => 'project_card_baths',
+                'type' => 'number',
+                'instructions' => 'Used on Apartments cards.',
+            ),
+            array(
+                'key' => 'field_project_card_sqft',
+                'label' => 'Square Feet',
+                'name' => 'project_card_sqft',
+                'type' => 'text',
+                'instructions' => 'Used on Apartments cards (e.g. 1,245).',
+            ),
+            array(
+                'key' => 'field_project_card_button_text',
+                'label' => 'Card Button Text',
+                'name' => 'project_card_button_text',
+                'type' => 'text',
+                'default_value' => 'Learn More',
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'projects',
+                ),
+            ),
+        ),
+        'menu_order' => -1,
+        'position' => 'normal',
+        'style' => 'default',
+    ));
+}
+add_action('acf/init', 'as_theme_register_project_card_acf_fields');
+
+/**
+ * Register Home page project-selection fields.
+ *
+ * Allows the admin to pick exactly which Project Detail posts appear in each
+ * Home page section (Ongoing Projects, Upcoming Projects, Apartments).
+ */
+function as_theme_register_home_project_selection_fields() {
+    if (!function_exists('acf_add_local_field_group')) {
+        return;
+    }
+
+    acf_add_local_field_group(array(
+        'key' => 'group_home_project_selection',
+        'title' => 'Home Page - Project Selections',
+        'fields' => array(
+            array(
+                'key' => 'field_home_ongoing_projects',
+                'label' => 'Ongoing Projects (Refined Residences section)',
+                'name' => 'home_ongoing_projects',
+                'type' => 'relationship',
+                'post_type' => array('projects'),
+                'filters' => array('search'),
+                'min' => 0,
+                'max' => 8,
+                'return_format' => 'id',
+                'instructions' => 'Select which Project Detail entries appear in the Ongoing Projects (Refined Residences) section. Leave empty to use legacy Residence Cards content.',
+            ),
+            array(
+                'key' => 'field_home_upcoming_projects',
+                'label' => 'Upcoming Projects (Amenities-style section)',
+                'name' => 'home_upcoming_projects',
+                'type' => 'relationship',
+                'post_type' => array('projects'),
+                'filters' => array('search'),
+                'min' => 0,
+                'max' => 8,
+                'return_format' => 'id',
+                'instructions' => 'Select which Project Detail entries appear in the Upcoming Projects (Amenity banners) section. Leave empty to use legacy Amenity Banners content.',
+            ),
+            array(
+                'key' => 'field_home_apartments_projects',
+                'label' => 'Apartments Section Projects',
+                'name' => 'home_apartments_projects',
+                'type' => 'relationship',
+                'post_type' => array('projects'),
+                'filters' => array('search'),
+                'min' => 0,
+                'max' => 12,
+                'return_format' => 'id',
+                'instructions' => 'Select which Project Detail entries appear in the Apartments slider. Leave empty to use legacy Apartment Slides content.',
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'page_template',
+                    'operator' => '==',
+                    'value' => 'template-home.php',
+                ),
+            ),
+        ),
+        'menu_order' => 10,
+        'position' => 'normal',
+        'style' => 'default',
+    ));
+}
+add_action('acf/init', 'as_theme_register_home_project_selection_fields');
+
+/**
+ * Register Projects Listing page banner ACF fields.
+ *
+ * Provides editable banner heading / subtitle / background image for the
+ * Projects Listing page (template-projects.php).
+ */
+function as_theme_register_projects_listing_acf_fields() {
+    if (!function_exists('acf_add_local_field_group')) {
+        return;
+    }
+
+    acf_add_local_field_group(array(
+        'key' => 'group_projects_listing_banner',
+        'title' => 'Projects Listing - Banner',
+        'fields' => array(
+            array(
+                'key' => 'field_projects_banner_title',
+                'label' => 'Banner Title',
+                'name' => 'projects_banner_title',
+                'type' => 'text',
+                'instructions' => 'Optional. Defaults to the page title when empty.',
+            ),
+            array(
+                'key' => 'field_projects_banner_subtitle',
+                'label' => 'Banner Subtitle',
+                'name' => 'projects_banner_subtitle',
+                'type' => 'text',
+                'default_value' => 'Discover all our developments',
+            ),
+            array(
+                'key' => 'field_projects_intro_text',
+                'label' => 'Intro Text (above tabs)',
+                'name' => 'projects_intro_text',
+                'type' => 'textarea',
+                'rows' => 3,
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'page_template',
+                    'operator' => '==',
+                    'value' => 'template-projects.php',
+                ),
+            ),
+        ),
+        'menu_order' => 0,
+        'position' => 'normal',
+        'style' => 'default',
+    ));
+}
+add_action('acf/init', 'as_theme_register_projects_listing_acf_fields');
