@@ -33,14 +33,14 @@
    $neighborhood_categories = get_field('project_neighborhood_categories');
 
    // Floor Plan section
-   $floor_plan_subtitle    = get_field('project_floor_plan_subtitle');
-   $floor_plan_title       = get_field('project_floor_plan_title');
+   $floor_plan_subtitle    = get_field('project_floor_plan_subtitle') ?: 'FLOOR PLAN';
+   $floor_plan_title       = get_field('project_floor_plan_title') ?: 'Perfect Layouts';
    $floor_plan_description = get_field('project_floor_plan_description');
    $floor_plan_image       = get_field('project_floor_plan_image');
    $floor_plan_button_text = get_field('project_floor_plan_button_text') ?: 'Get Floor Plan';
 
    // Property Details
-   $pd_heading    = get_field('project_property_details_heading');
+   $pd_heading    = get_field('project_property_details_heading') ?: 'Property Details';
    $pd_type       = get_field('project_property_type');
    $pd_units      = get_field('project_property_units');
    $pd_price      = get_field('project_property_price');
@@ -52,21 +52,21 @@
    $pd_maharera   = get_field('project_property_maharera');
 
    // Brochure section
-   $brochure_subtitle    = get_field('project_brochure_subtitle');
-   $brochure_title       = get_field('project_brochure_title');
+   $brochure_subtitle    = get_field('project_brochure_subtitle') ?: 'BROCHURE';
+   $brochure_title       = get_field('project_brochure_title') ?: 'Download Resources';
    $brochure_description = get_field('project_brochure_description');
    $brochure_background  = get_field('project_brochure_background');
    $brochure_button_text = get_field('project_brochure_button_text') ?: 'Download Brochure';
    $brochure_file        = get_field('project_brochure_file');
 
    // Gallery section
-   $gallery_subtitle = get_field('project_gallery_subtitle');
-   $gallery_title    = get_field('project_gallery_title');
+   $gallery_subtitle = get_field('project_gallery_subtitle') ?: 'GALLERY';
+   $gallery_title    = get_field('project_gallery_title') ?: 'Project Gallery';
    $gallery_images   = get_field('project_gallery_images');
 
    // Contact Us section
-   $contact_subtitle    = get_field('project_contact_subtitle');
-   $contact_title       = get_field('project_contact_title');
+   $contact_subtitle    = get_field('project_contact_subtitle') ?: 'CONTACT US';
+   $contact_title       = get_field('project_contact_title') ?: 'Get in Touch';
    $contact_description = get_field('project_contact_description');
 
    // Shared Project Inquiry CF7 form ID
