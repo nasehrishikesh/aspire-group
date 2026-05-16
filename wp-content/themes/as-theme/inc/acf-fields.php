@@ -2706,3 +2706,360 @@ function as_theme_register_projects_listing_acf_fields() {
     ));
 }
 add_action('acf/init', 'as_theme_register_projects_listing_acf_fields');
+
+/**
+ * Register ACF Field Groups for Project Detail - Floor Plan Section
+ */
+function as_theme_register_project_floor_plan_acf_fields() {
+    if (!function_exists('acf_add_local_field_group')) {
+        return;
+    }
+
+    acf_add_local_field_group(array(
+        'key' => 'group_project_floor_plan_section',
+        'title' => 'Floor Plan Section',
+        'fields' => array(
+            array(
+                'key' => 'field_project_floor_plan_subtitle',
+                'label' => 'Subtitle',
+                'name' => 'project_floor_plan_subtitle',
+                'type' => 'text',
+                'default_value' => 'floor plan',
+            ),
+            array(
+                'key' => 'field_project_floor_plan_title',
+                'label' => 'Title',
+                'name' => 'project_floor_plan_title',
+                'type' => 'text',
+                'default_value' => 'Explore the layout',
+            ),
+            array(
+                'key' => 'field_project_floor_plan_description',
+                'label' => 'Description',
+                'name' => 'project_floor_plan_description',
+                'type' => 'textarea',
+                'rows' => 3,
+            ),
+            array(
+                'key' => 'field_project_floor_plan_image',
+                'label' => 'Floor Plan Image',
+                'name' => 'project_floor_plan_image',
+                'type' => 'image',
+                'instructions' => 'This image is blurred on the page until the user submits the form to unlock the download.',
+                'return_format' => 'url',
+                'required' => 0,
+            ),
+            array(
+                'key' => 'field_project_floor_plan_button_text',
+                'label' => 'CTA Button Text',
+                'name' => 'project_floor_plan_button_text',
+                'type' => 'text',
+                'default_value' => 'Get Floor Plan',
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'projects',
+                ),
+            ),
+        ),
+        'menu_order' => 4,
+        'position' => 'normal',
+        'style' => 'default',
+    ));
+}
+add_action('acf/init', 'as_theme_register_project_floor_plan_acf_fields');
+
+/**
+ * Register ACF Field Groups for Project Detail - Property Details Section
+ */
+function as_theme_register_project_property_details_acf_fields() {
+    if (!function_exists('acf_add_local_field_group')) {
+        return;
+    }
+
+    acf_add_local_field_group(array(
+        'key' => 'group_project_property_details_section',
+        'title' => 'Property Details',
+        'fields' => array(
+            array(
+                'key' => 'field_project_property_details_heading',
+                'label' => 'Section Heading',
+                'name' => 'project_property_details_heading',
+                'type' => 'text',
+                'default_value' => 'Property Details',
+            ),
+            array(
+                'key' => 'field_project_property_type',
+                'label' => 'Property Type',
+                'name' => 'project_property_type',
+                'type' => 'select',
+                'choices' => array(
+                    'commercial'  => 'Commercial',
+                    'residential' => 'Residential',
+                ),
+                'default_value' => 'residential',
+                'return_format' => 'label',
+                'allow_null' => 1,
+            ),
+            array(
+                'key' => 'field_project_property_units',
+                'label' => 'Property Units',
+                'name' => 'project_property_units',
+                'type' => 'checkbox',
+                'instructions' => 'Select all unit types that this property offers.',
+                'choices' => array(
+                    '1 RK'  => '1 RK',
+                    '1 BHK' => '1 BHK',
+                    '2 BHK' => '2 BHK',
+                    '3 BHK' => '3 BHK',
+                    '4 BHK' => '4 BHK',
+                    '5 BHK' => '5 BHK',
+                ),
+                'layout' => 'horizontal',
+                'return_format' => 'value',
+            ),
+            array(
+                'key' => 'field_project_property_price',
+                'label' => 'Price',
+                'name' => 'project_property_price',
+                'type' => 'text',
+                'instructions' => 'e.g. ₹1.25 Cr onwards',
+            ),
+            array(
+                'key' => 'field_project_property_city',
+                'label' => 'City',
+                'name' => 'project_property_city',
+                'type' => 'text',
+            ),
+            array(
+                'key' => 'field_project_property_tower',
+                'label' => 'Tower',
+                'name' => 'project_property_tower',
+                'type' => 'text',
+            ),
+            array(
+                'key' => 'field_project_property_possession',
+                'label' => 'Possession',
+                'name' => 'project_property_possession',
+                'type' => 'date_picker',
+                'display_format'   => 'M Y',
+                'return_format'    => 'M Y',
+                'first_day' => 1,
+                'instructions' => 'Pick the possession month / year.',
+            ),
+            array(
+                'key' => 'field_project_property_status',
+                'label' => 'Property Status',
+                'name' => 'project_property_status',
+                'type' => 'text',
+                'instructions' => 'e.g. Under Construction, Ready to Move',
+            ),
+            array(
+                'key' => 'field_project_property_parking',
+                'label' => 'Parking',
+                'name' => 'project_property_parking',
+                'type' => 'text',
+                'instructions' => 'e.g. Covered, Open, 2 spots per unit',
+            ),
+            array(
+                'key' => 'field_project_property_maharera',
+                'label' => 'MahaRERA',
+                'name' => 'project_property_maharera',
+                'type' => 'text',
+                'instructions' => 'MahaRERA registration number.',
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'projects',
+                ),
+            ),
+        ),
+        'menu_order' => 5,
+        'position' => 'normal',
+        'style' => 'default',
+    ));
+}
+add_action('acf/init', 'as_theme_register_project_property_details_acf_fields');
+
+/**
+ * Register ACF Field Groups for Project Detail - Download Brochure Section
+ */
+function as_theme_register_project_brochure_acf_fields() {
+    if (!function_exists('acf_add_local_field_group')) {
+        return;
+    }
+
+    acf_add_local_field_group(array(
+        'key' => 'group_project_brochure_section',
+        'title' => 'Download Brochure Section',
+        'fields' => array(
+            array(
+                'key' => 'field_project_brochure_subtitle',
+                'label' => 'Subtitle',
+                'name' => 'project_brochure_subtitle',
+                'type' => 'text',
+                'default_value' => 'brochure',
+            ),
+            array(
+                'key' => 'field_project_brochure_title',
+                'label' => 'Title',
+                'name' => 'project_brochure_title',
+                'type' => 'text',
+                'default_value' => 'Get the complete project brochure',
+            ),
+            array(
+                'key' => 'field_project_brochure_description',
+                'label' => 'Description',
+                'name' => 'project_brochure_description',
+                'type' => 'textarea',
+                'rows' => 3,
+            ),
+            array(
+                'key' => 'field_project_brochure_background',
+                'label' => 'Background Image',
+                'name' => 'project_brochure_background',
+                'type' => 'image',
+                'return_format' => 'url',
+            ),
+            array(
+                'key' => 'field_project_brochure_button_text',
+                'label' => 'CTA Button Text',
+                'name' => 'project_brochure_button_text',
+                'type' => 'text',
+                'default_value' => 'Download Brochure',
+            ),
+            array(
+                'key' => 'field_project_brochure_file',
+                'label' => 'Brochure File',
+                'name' => 'project_brochure_file',
+                'type' => 'file',
+                'instructions' => 'Upload the brochure (PDF, etc.). The file is auto-downloaded after the user submits the popup form.',
+                'return_format' => 'url',
+                'mime_types' => 'pdf,doc,docx',
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'projects',
+                ),
+            ),
+        ),
+        'menu_order' => 6,
+        'position' => 'normal',
+        'style' => 'default',
+    ));
+}
+add_action('acf/init', 'as_theme_register_project_brochure_acf_fields');
+
+/**
+ * Register ACF Field Groups for Project Detail - Gallery Section
+ */
+function as_theme_register_project_gallery_acf_fields() {
+    if (!function_exists('acf_add_local_field_group')) {
+        return;
+    }
+
+    acf_add_local_field_group(array(
+        'key' => 'group_project_gallery_section',
+        'title' => 'Gallery Section',
+        'fields' => array(
+            array(
+                'key' => 'field_project_gallery_subtitle',
+                'label' => 'Subtitle',
+                'name' => 'project_gallery_subtitle',
+                'type' => 'text',
+                'default_value' => 'gallery',
+            ),
+            array(
+                'key' => 'field_project_gallery_title',
+                'label' => 'Title',
+                'name' => 'project_gallery_title',
+                'type' => 'text',
+                'default_value' => 'A glimpse inside',
+            ),
+            array(
+                'key' => 'field_project_gallery_images',
+                'label' => 'Gallery Images',
+                'name' => 'project_gallery_images',
+                'type' => 'gallery',
+                'return_format' => 'array',
+                'preview_size' => 'medium',
+                'instructions' => 'Upload / pick images to show in the gallery slider.',
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'projects',
+                ),
+            ),
+        ),
+        'menu_order' => 7,
+        'position' => 'normal',
+        'style' => 'default',
+    ));
+}
+add_action('acf/init', 'as_theme_register_project_gallery_acf_fields');
+
+/**
+ * Register ACF Field Groups for Project Detail - Contact Us Section
+ */
+function as_theme_register_project_contact_acf_fields() {
+    if (!function_exists('acf_add_local_field_group')) {
+        return;
+    }
+
+    acf_add_local_field_group(array(
+        'key' => 'group_project_contact_section',
+        'title' => 'Contact Us Section',
+        'fields' => array(
+            array(
+                'key' => 'field_project_contact_subtitle',
+                'label' => 'Subtitle',
+                'name' => 'project_contact_subtitle',
+                'type' => 'text',
+                'default_value' => 'contact us',
+            ),
+            array(
+                'key' => 'field_project_contact_title',
+                'label' => 'Title',
+                'name' => 'project_contact_title',
+                'type' => 'text',
+                'default_value' => 'Have a question? Get in touch.',
+            ),
+            array(
+                'key' => 'field_project_contact_description',
+                'label' => 'Description',
+                'name' => 'project_contact_description',
+                'type' => 'textarea',
+                'rows' => 2,
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'projects',
+                ),
+            ),
+        ),
+        'menu_order' => 8,
+        'position' => 'normal',
+        'style' => 'default',
+    ));
+}
+add_action('acf/init', 'as_theme_register_project_contact_acf_fields');
