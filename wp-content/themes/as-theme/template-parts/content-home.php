@@ -569,8 +569,7 @@
                   <h2 class="elementor-heading-title elementor-size-default"><?php echo esc_html($stats_heading_1); ?></h2>
                </div>
             </div>
-         </div>
-         <div class="elementor-element elementor-element-bb54ffa e-grid e-con-full e-con e-child" data-id="bb54ffa" data-element_type="container">
+            <div class="elementor-element elementor-element-bb54ffa e-grid e-con-full e-con e-child" data-id="bb54ffa" data-element_type="container">
             <?php foreach ($stats_counters as $index => $counter) : ?>
             <div class="elementor-element elementor-element-cee1b7e animated-fast elementor-widget elementor-widget-counter animated opal-move-up" data-id="cee1b7e" data-element_type="widget" data-settings='{"_animation":"opal-move-up","_animation_delay":<?php echo $index * 50; ?>}' data-widget_type="counter.default">
                <div class="elementor-widget-container">
@@ -589,6 +588,8 @@
             </div>
             <?php endforeach; ?>
          </div>
+         </div>
+         
       </div>
    </div>
    <!-- Refined Residences Section -->
