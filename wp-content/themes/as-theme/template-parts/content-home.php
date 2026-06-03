@@ -124,6 +124,11 @@
    $about_button_url = get_field('about_button_url') ;
    $about_image_1 = get_field('about_image_1') ;
    $about_image_2 = get_field('about_image_2') ;
+
+   // Meet Our Leader (Team) Section - mirrors the About Us page
+   $team_subtitle = get_field('about_team_subtitle');
+   $team_title    = get_field('about_team_title');
+   $team_members  = get_field('about_team_members');
    
    // Contact section
    $contact_form_heading = get_field('contact_form_heading') ;
@@ -1118,64 +1123,78 @@
          </div>
       </div>
    </div> -->
-   <!-- About Section -->
-   <div class="elementor-element elementor-element-d5588ad e-flex e-con-boxed e-con e-parent" data-id="d5588ad" data-element_type="container">
-      <div class="e-con-inner">
-         <div class="elementor-element elementor-element-0ea523c e-con-full e-flex e-con e-child" data-id="0ea523c" data-element_type="container">
-            <div class="elementor-element elementor-element-e9ca48e elementor-widget elementor-widget-text-editor" data-id="e9ca48e" data-element_type="widget" data-widget_type="text-editor.default">
-               <div class="elementor-widget-container">
-                  <?php echo esc_html($about_subtitle); ?>
-               </div>
-            </div>
-         </div>
-         <div class="elementor-element elementor-element-502e545 e-con-full e-flex e-con e-child" data-id="502e545" data-element_type="container">
-            <div class="elementor-element elementor-element-93eb514 elementor-widget__width-initial elementor-widget elementor-widget-heading" data-id="93eb514" data-element_type="widget" data-widget_type="heading.default">
-               <div class="elementor-widget-container">
-                  <h2 class="elementor-heading-title elementor-size-default"><?php echo nl2br(esc_html($about_title)); ?></h2>
-               </div>
-            </div>
-            <div class="elementor-element elementor-element-d8c629d elementor-widget elementor-widget-image" data-id="d8c629d" data-element_type="widget" data-widget_type="image.default">
-               <div class="elementor-widget-container">
-                  <img loading="lazy" decoding="async" width="520" height="600" src="<?php echo esc_url($about_image_1); ?>" class="attachment-full size-full" alt="">
-               </div>
-            </div>
-         </div>
-         <div class="elementor-element elementor-element-d0d7530 e-con-full e-flex e-con e-child" data-id="d0d7530" data-element_type="container">
-            <div class="elementor-element elementor-element-4af490b elementor-hidden-mobile elementor-widget elementor-widget-image" data-id="4af490b" data-element_type="widget" data-widget_type="image.default">
-               <div class="elementor-widget-container">
-                  <img loading="lazy" decoding="async" width="330" height="220" src="<?php echo esc_url($about_image_2); ?>" class="attachment-full size-full" alt="">
-               </div>
-            </div>
-            <div class="elementor-element elementor-element-10e7392 elementor-widget elementor-widget-text-editor" data-id="10e7392" data-element_type="widget" data-widget_type="text-editor.default">
-               <div class="elementor-widget-container">
-                  <?php echo esc_html($about_description); ?>
-               </div>
-            </div>
-            <?php
-            $about_btn_url = ($about_button_action === 'link') ? $about_button_url : (($about_button_action === 'page') ? get_field('about_button_page') : '#easto-button-popup-8feb59a');
-            $about_popup_class = ($about_button_action === 'popup') ? ' button-popup' : '';
-            $about_popup_effect = ($about_button_action === 'popup') ? ' data-effect="mfp-zoom-in"' : '';
-            ?>
-            <div class="elementor-element elementor-element-cba87ba elementor-button-type-link elementor-widget elementor-widget-button" data-id="cba87ba" data-element_type="widget" data-widget_type="button.default">
-               <div class="elementor-widget-container">
-                  <div class="elementor-button-wrapper">
-                     <a class="elementor-button elementor-button-link elementor-size-sm<?php echo esc_attr($about_popup_class); ?>" href="<?php echo esc_url($about_btn_url); ?>"<?php echo $about_popup_effect; ?>>
-                        <span class="elementor-button-content-wrapper">
-                           <span class="elementor-button-icon">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-                                 <path d="M18.4 6l-1.68 1.75 6.72 7h-19.44v2.5h19.44l-6.72 7 1.68 1.75 9.6-10-9.6-10z" class="btn-icon__icon"></path>
-                                 <path d="M18.4 6l-1.68 1.75 6.72 7h-19.44v2.5h19.44l-6.72 7 1.68 1.75 9.6-10-9.6-10z" class="btn-icon__icon"></path>
-                              </svg>
-                           </span>
-                           <span class="elementor-button-text"><?php echo esc_html($about_button_text); ?></span>
-                        </span>
-                     </a>
+   <!-- Meet Our Leader (Team) Section -->
+   <?php if ($team_members) : ?>
+   <div class="elementor elementor-5841 home-meet-our-leader">
+   <div class="elementor-element elementor-element-82a602e e-flex e-con-boxed e-con e-parent e-lazyloaded" data-id="82a602e" data-element_type="container">
+      <div class="e-con-inner col-full">
+         <div class="elementor-element elementor-element-52dbac9 animated-fast elementor-widget-mobile__width-inherit elementor-widget elementor-widget-easto-team-box animated opal-move-up" data-id="52dbac9" data-element_type="widget" data-settings='{"_animation":"opal-move-up"}' data-widget_type="easto-team-box.default">
+            <div class="elementor-widget-container">
+               <div class="elementor-teambox-item-wrapper">
+                  <div class="elementor-teambox-wrapper-inner">
+                     <div class="d-grid team-custom-grid">
+                        <div class="team-header-block grid-item">
+                            <?php if ($team_subtitle) : ?>
+                            <div class="team-subtitle"><?php echo esc_html($team_subtitle); ?></div>
+                            <?php endif; ?>
+                            <?php if ($team_title) : ?>
+                            <h2 class="team-title"><?php echo nl2br(esc_html($team_title)); ?></h2>
+                            <?php endif; ?>
+                        </div>
+                        <?php foreach ($team_members as $index => $member) : ?>
+                        <div class="elementor-teambox-item grid-item" data-goto="<?php echo $index; ?>">
+                           <div class="teambox-item-inner">
+                              <?php if (!empty($member['photo'])) : ?>
+                              <div class="team-image">
+                                 <div class="team-image-inner">
+                                    <img loading="lazy" decoding="async" width="<?php echo esc_attr($member['photo']['width']); ?>" height="<?php echo esc_attr($member['photo']['height']); ?>" src="<?php echo esc_url($member['photo']['url']); ?>" class="attachment-full size-full wp-image-<?php echo esc_attr($member['photo']['ID']); ?>" alt="<?php echo esc_attr($member['photo']['alt']); ?>" <?php if (!empty($member['photo']['sizes'])) : ?>srcset="<?php echo esc_attr($member['photo']['sizes']['medium']); ?> 251w, <?php echo esc_url($member['photo']['url']); ?> <?php echo esc_attr($member['photo']['width']); ?>w" sizes="(max-width: <?php echo esc_attr($member['photo']['width']); ?>px) 100vw, <?php echo esc_attr($member['photo']['width']); ?>px"<?php endif; ?>>
+                                 </div>
+                              </div>
+                              <?php endif; ?>
+                              <div class="team-content">
+                                 <div class="team-content-header">
+                                    <?php if (!empty($member['name'])) : ?>
+                                    <div class="team-name heading omega"><?php echo esc_html($member['name']); ?></div>
+                                    <?php endif; ?>
+                                    <?php if (!empty($member['position'])) : ?>
+                                    <div class="team-job heading sigma"><?php echo esc_html($member['position']); ?></div>
+                                    <?php endif; ?>
+                                 </div>
+                                 <?php if (!empty($member['facebook']) || !empty($member['instagram']) || !empty($member['youtube']) || !empty($member['twitter'])) : ?>
+                                 <div class="team-box-socials">
+                                    <div class="team-click">
+                                       <i class="easto-icon-plus-1"></i>
+                                       <i class="easto-icon-times-1"></i>
+                                    </div>
+                                    <div class="team-icon-socials">
+                                       <?php if (!empty($member['facebook'])) : ?>
+                                       <a class="heading sigma" href="<?php echo esc_url($member['facebook']); ?>" target="_blank">FB</a>
+                                       <?php endif; ?>
+                                       <?php if (!empty($member['instagram'])) : ?>
+                                       <a class="heading sigma" href="<?php echo esc_url($member['instagram']); ?>" target="_blank">IN</a>
+                                       <?php endif; ?>
+                                       <?php if (!empty($member['youtube'])) : ?>
+                                       <a class="heading sigma" href="<?php echo esc_url($member['youtube']); ?>" target="_blank">YT</a>
+                                       <?php endif; ?>
+                                       <?php if (!empty($member['twitter'])) : ?>
+                                       <a class="heading sigma" href="<?php echo esc_url($member['twitter']); ?>" target="_blank">TW</a>
+                                       <?php endif; ?>
+                                    </div>
+                                 </div>
+                                 <?php endif; ?>
+                              </div>
+                           </div>
+                        </div>
+                        <?php endforeach; ?>
+                     </div>
                   </div>
                </div>
             </div>
          </div>
       </div>
    </div>
+   </div><!-- /.elementor-5841 wrapper for team section styles -->
+   <?php endif; ?>
    <!-- Contact Section -->
    <div class="elementor-element elementor-element-2c7104c e-flex e-con-boxed e-con e-parent" data-id="2c7104c" data-element_type="container" data-settings='{"background_background":"classic"}'>
       <div class="e-con-inner">

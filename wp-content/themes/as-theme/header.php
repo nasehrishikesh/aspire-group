@@ -58,7 +58,7 @@
                     </div>
 
                     <!-- Button Popup -->
-                    <div class="elementor-element elementor-element-7b08c31 elementor-widget__width-initial elementor-widget elementor-widget-easto-button-popup" data-id="7b08c31" data-element_type="widget" data-widget_type="easto-button-popup.default">
+                    <div class="elementor-element elementor-element-7b08c31 elementor-widget__width-initial elementor-widget elementor-widget-easto-button-popup desktop-hamburger-button" data-id="7b08c31" data-element_type="widget" data-widget_type="easto-button-popup.default">
                         <div class="elementor-widget-container">
                             <div class="easto-button-popup">
                                 <a class="button-popup elementor-button" href="#easto-button-popup-7b08c31" role="button" data-effect="mfp-slide-bottom-special">

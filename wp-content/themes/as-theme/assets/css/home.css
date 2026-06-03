@@ -204,9 +204,7 @@ body .is-layout-grid>* {
   clip: rect(0, 1905px, 100vh, 0);
 }
 
-.custom-logo {
-  max-width: 70px !important;
-}
+
 
 /* Hero Slider Styles */
 .hero-slider-wrapper {
@@ -492,12 +490,12 @@ body .is-layout-grid>* {
 }
 
 .team-custom-grid .team-header-block {
-  grid-column: 1 / 6 !important;
+  grid-column: 3 / 6 !important;
   grid-row: 1 / 2 !important;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-self: center;
+  align-self: baseline;
   padding-top: 0;
 }
 

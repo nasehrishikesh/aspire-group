@@ -1863,6 +1863,13 @@ function as_theme_register_about_acf_fields() {
                     'value' => 'template-about.php',
                 ),
             ),
+            array(
+                array(
+                    'param' => 'page_template',
+                    'operator' => '==',
+                    'value' => 'template-home.php',
+                ),
+            ),
         ),
         'menu_order' => 4,
         'position' => 'normal',

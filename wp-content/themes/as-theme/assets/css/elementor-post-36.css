@@ -367,7 +367,7 @@
 }
 
 .elementor-36 .elementor-element.elementor-element-cee1b7e .elementor-counter {
-  gap: 160px;
+  gap: 75px;
 }
 
 .elementor-36 .elementor-element.elementor-element-cee1b7e .elementor-counter-number-wrapper {
@@ -4334,6 +4334,12 @@ body:not(.rtl) .elementor-36 .elementor-element.elementor-element-0d84bcb .eleme
 
   .elementor-36 .elementor-element.elementor-element-76c72f8 .elementor-places-list-item {
     min-width: 410px;
+  }
+
+  .elementor-36 .elementor-element.elementor-element-9e63b1c {
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: right !important;
   }
 }
 

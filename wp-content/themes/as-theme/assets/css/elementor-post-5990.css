@@ -73,6 +73,13 @@
     --container-widget-flex-grow: 0;
 }
 
+@media screen and (max-width: 1024px) {
+    .elementor-5990 .elementor-element.elementor-element-ce7ffe8 {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
 .elementor-5990 .elementor-element.elementor-element-e4e28db {
     font-size: 22px;
 }

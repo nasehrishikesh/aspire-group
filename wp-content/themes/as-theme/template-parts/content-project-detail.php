@@ -869,6 +869,18 @@
       margin-bottom: 2px;
    }
    .project-inquiry-widget .project-inquiry-form input.project-name-input { color:#1a1a1a; opacity:.85; cursor:not-allowed; }
+
+   @media (max-width: 992px) 
+    {
+      .floor-plan-card .elementor-widget-button{
+         width: 210px;
+      }
+
+      .floor-plan-card .elementor-widget-button .elementor-button{
+         font-size: 10px;
+      }
+
+    }
 </style>
 
 <script>

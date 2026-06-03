@@ -19,7 +19,8 @@
   width: 100%;
   padding: 0;
   max-width: 100%;
-  background-color: transparent !important; /* override generatepress default white color for header */
+  background-color: transparent !important;
+  /* override generatepress default white color for header */
 }
 
 .bhf-hidden {
@@ -30,4 +31,29 @@
 .ehf-header #masthead {
   z-index: 99;
   position: relative;
+}
+
+.ehf-header #masthead .e-con.e-flex>.e-con-inner {
+  padding-block: 15px !important;
+
+}
+
+.custom-logo {
+  max-width: 100px !important;
+}
+
+.desktop-hamburger-button .elementor-widget-container {
+  display: none !important;
+}
+
+
+@media (max-width: 1024px) {
+  .custom-logo {
+    max-width: 60px !important;
+  }
+
+  .ehf-header #masthead .e-con.e-flex>.e-con-inner {
+    padding-block: 10px !important;
+
+  }
 }
