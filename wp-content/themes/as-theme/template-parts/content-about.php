@@ -23,6 +23,63 @@
    $team_title = get_field('about_team_title');
    $team_members = get_field('about_team_members');
    $stats_counters = get_field('about_stats_counters');
+
+   // Construction Services section
+   $services_title    = get_field('about_services_title')    ?: 'Our Construction Services';
+   $services_subtitle = get_field('about_services_subtitle') ?: 'Comprehensive solutions for residential and commercial development from concept to completion';
+   $services_items    = get_field('about_services_items');
+
+   $default_services_items = array(
+       array(
+           'icon' => '',
+           'icon_svg' => '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12L12 4l9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>',
+           'title' => 'Residential Development',
+           'description' => 'Thoughtfully designed communities with modern amenities, Vaastu compliance, and eco-friendly spaces.',
+       ),
+       array(
+           'icon' => '',
+           'icon_svg' => '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="1.5"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg>',
+           'title' => 'Commercial Projects',
+           'description' => 'Future-ready business spaces with smart layouts, prime locations, and modern infrastructure.',
+       ),
+       array(
+           'icon' => '',
+           'icon_svg' => '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="3" width="12" height="18" rx="1.5"/><path d="M9 3v2h6V3"/><path d="M9 10h6M9 14h6M9 18h4"/></svg>',
+           'title' => 'Construction Management',
+           'description' => 'End-to-end project execution with strict quality control, timeline monitoring, and budget management.',
+       ),
+       array(
+           'icon' => '',
+           'icon_svg' => '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 12l9 4 9-4"/><path d="M3 17l9 4 9-4"/></svg>',
+           'title' => 'Architectural Design',
+           'description' => 'Innovative, functional designs with 3D visualization, space optimization, and structural safety.',
+       ),
+       array(
+           'icon' => '',
+           'icon_svg' => '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M8 13h8M8 17h6"/></svg>',
+           'title' => 'Legal Compliance',
+           'description' => 'Complete RERA compliance, land documentation, and government approvals handling.',
+       ),
+       array(
+           'icon' => '',
+           'icon_svg' => '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>',
+           'title' => 'Sales & Marketing',
+           'description' => 'Strategic campaigns with digital outreach and sales optimization for maximum project visibility.',
+       ),
+   );
+
+   $services_items = have_rows('about_services_items') ? array() : $default_services_items;
+   if (have_rows('about_services_items')) {
+       while (have_rows('about_services_items')) {
+           the_row();
+           $services_items[] = array(
+               'icon' => get_sub_field('icon'),
+               'icon_svg' => get_sub_field('icon_svg'),
+               'title' => get_sub_field('title'),
+               'description' => get_sub_field('description'),
+           );
+       }
+   }
    ?>
 <div id="page" class="hfeed site elementor-5841">
    <!-- Breadcrumb Section -->
@@ -335,6 +392,36 @@
                               </div>
                            </div>
                         </div>
+                        <?php endif; ?>
+                        <!-- Construction Services Section -->
+                        <?php if (!empty($services_items)) : ?>
+                        <section class="about-services-section" id="construction-services">
+                           <div class="about-services-container">
+                              <header class="about-services-header">
+                                 <?php if ($services_title) : ?>
+                                    <h2 class="about-services-title"><?php echo esc_html($services_title); ?></h2>
+                                 <?php endif; ?>
+                                 <?php if ($services_subtitle) : ?>
+                                    <p class="about-services-subtitle"><?php echo esc_html($services_subtitle); ?></p>
+                                 <?php endif; ?>
+                              </header>
+                              <div class="about-services-grid">
+                                 <?php foreach ($services_items as $service) : ?>
+                                    <div class="about-service-card">
+                                       <div class="about-service-icon">
+                                          <?php if (!empty($service['icon_svg'])) : ?>
+                                             <?php echo $service['icon_svg']; // inline SVG allowed ?>
+                                          <?php elseif (!empty($service['icon'])) : ?>
+                                             <img src="<?php echo esc_url($service['icon']); ?>" alt="<?php echo esc_attr($service['title']); ?>" loading="lazy" />
+                                          <?php endif; ?>
+                                       </div>
+                                       <h3 class="about-service-title"><?php echo esc_html($service['title']); ?></h3>
+                                       <p class="about-service-desc"><?php echo esc_html($service['description']); ?></p>
+                                    </div>
+                                 <?php endforeach; ?>
+                              </div>
+                           </div>
+                        </section>
                         <?php endif; ?>
                         <!-- Statistics Section -->
                         <?php if ($stats_counters) : ?>

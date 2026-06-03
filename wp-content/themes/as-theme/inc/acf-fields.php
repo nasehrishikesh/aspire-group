@@ -1845,6 +1845,83 @@ function as_theme_register_about_acf_fields() {
         'style' => 'default',
     ));
 
+    // About Page Construction Services Section
+    acf_add_local_field_group(array(
+        'key' => 'group_about_services',
+        'title' => 'Construction Services Section',
+        'fields' => array(
+            array(
+                'key' => 'field_about_services_title',
+                'label' => 'Section Title',
+                'name' => 'about_services_title',
+                'type' => 'text',
+                'default_value' => 'Our Construction Services',
+            ),
+            array(
+                'key' => 'field_about_services_subtitle',
+                'label' => 'Section Description',
+                'name' => 'about_services_subtitle',
+                'type' => 'textarea',
+                'rows' => 2,
+                'default_value' => 'Comprehensive solutions for residential and commercial development from concept to completion',
+            ),
+            array(
+                'key' => 'field_about_services_items',
+                'label' => 'Service Cards',
+                'name' => 'about_services_items',
+                'type' => 'repeater',
+                'min' => 1,
+                'max' => 12,
+                'layout' => 'block',
+                'button_label' => 'Add Service',
+                'sub_fields' => array(
+                    array(
+                        'key' => 'field_about_service_icon',
+                        'label' => 'Icon (SVG or Image)',
+                        'name' => 'icon',
+                        'type' => 'image',
+                        'return_format' => 'url',
+                        'mime_types' => 'svg,png,jpg,jpeg,webp',
+                        'instructions' => 'Upload an SVG (preferred) or image icon. Overridden by inline SVG below if filled.',
+                    ),
+                    array(
+                        'key' => 'field_about_service_icon_svg',
+                        'label' => 'Inline SVG (optional)',
+                        'name' => 'icon_svg',
+                        'type' => 'textarea',
+                        'rows' => 4,
+                        'instructions' => 'Optional inline SVG markup. Overrides uploaded icon if present.',
+                    ),
+                    array(
+                        'key' => 'field_about_service_title',
+                        'label' => 'Title',
+                        'name' => 'title',
+                        'type' => 'text',
+                    ),
+                    array(
+                        'key' => 'field_about_service_description',
+                        'label' => 'Description',
+                        'name' => 'description',
+                        'type' => 'textarea',
+                        'rows' => 3,
+                    ),
+                ),
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'page_template',
+                    'operator' => '==',
+                    'value' => 'template-about.php',
+                ),
+            ),
+        ),
+        'menu_order' => 4,
+        'position' => 'normal',
+        'style' => 'default',
+    ));
+
     // About Page Stats Section
     acf_add_local_field_group(array(
         'key' => 'group_about_stats',
