@@ -288,65 +288,50 @@ $scrolling_text_items = array(
 update_field('scrolling_text_items', $scrolling_text_items, $page_id);
 echo "<p>Scrolling Text Section fields populated.</p>";
 
-// Apartments Section
-update_field('apartments_subtitle', 'apartments', $page_id);
-update_field('apartments_title', 'A place to call home', $page_id);
-update_field('apartments_description', 'Our residences feature smart home technology, premium finishes, and stunning city views that make every day feel extraordinary.', $page_id);
-update_field('apartments_button_text', 'view all', $page_id);
-update_field('apartments_button_url', '#', $page_id);
+// Why Aspire Group Section
+update_field('why_aspire_title', 'Why Aspire Group?', $page_id);
 
-$apartments_slider = array(
+$why_aspire_icons_uri = get_template_directory_uri() . '/assets/images/why-aspire';
+$why_aspire_features = array(
     array(
-        'title' => 'Penthouse',
-        'image' => '',
-        'beds' => 3,
-        'baths' => 2,
-        'sqft' => '1,245',
-        'link' => '#',
+        'icon' => $why_aspire_icons_uri . '/Quality.png',
+        'icon_svg' => '',
+        'title' => 'Quality First',
+        'description' => 'Premium materials, superior engineering, and uncompromising construction standards.',
     ),
     array(
-        'title' => 'Premium Apartment',
-        'image' => '',
-        'beds' => 3,
-        'baths' => 2,
-        'sqft' => '1,245',
-        'link' => '#',
+        'icon' => $why_aspire_icons_uri . '/coustomer.png',
+        'icon_svg' => '',
+        'title' => 'Customer-Centric Approach',
+        'description' => 'Every decision is guided by customer needs and expectations.',
     ),
     array(
-        'title' => '3 Bedroom',
-        'image' => '',
-        'beds' => 3,
-        'baths' => 3,
-        'sqft' => '1,245',
-        'link' => '#',
+        'icon' => $why_aspire_icons_uri . '/time-to-delivery.png',
+        'icon_svg' => '',
+        'title' => 'Timely Delivery',
+        'description' => 'Commitment to delivering projects on schedule.',
     ),
     array(
-        'title' => '2 Bedroom',
-        'image' => '',
-        'beds' => 2,
-        'baths' => 1,
-        'sqft' => '1,245',
-        'link' => '#',
+        'icon' => $why_aspire_icons_uri . '/location.png',
+        'icon_svg' => '',
+        'title' => 'Prime Locations',
+        'description' => 'Strategically selected locations with excellent connectivity.',
     ),
     array(
-        'title' => '1 Bedroom',
-        'image' => '',
-        'beds' => 1,
-        'baths' => 1,
-        'sqft' => '1,245',
-        'link' => '#',
+        'icon' => $why_aspire_icons_uri . '/transperancy.png',
+        'icon_svg' => '',
+        'title' => 'Transparent Practices',
+        'description' => 'Clear communication and complete transparency throughout the buying journey.',
     ),
     array(
-        'title' => 'Modern Suite',
-        'image' => '',
-        'beds' => 3,
-        'baths' => 3,
-        'sqft' => '1,245',
-        'link' => '#',
+        'icon' => $why_aspire_icons_uri . '/future-ready-Design.png',
+        'icon_svg' => '',
+        'title' => 'Future-Ready Design',
+        'description' => 'Modern architecture and thoughtful planning for evolving lifestyles.',
     ),
 );
-update_field('apartments_slider', $apartments_slider, $page_id);
-echo "<p>Apartments Section fields populated.</p>";
+update_field('why_aspire_features', $why_aspire_features, $page_id);
+echo "<p>Why Aspire Group Section fields populated.</p>";
 
 // Neighborhood Section
 update_field('neighborhood_subtitle', 'neighborhood', $page_id);

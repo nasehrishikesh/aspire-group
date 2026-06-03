@@ -99,12 +99,8 @@
    $amenities_button_action = get_field('amenities_button_action') ?: 'link';
    $amenities_button_url = get_field('amenities_button_url') ;
    
-   // Apartments section
-   $apartments_subtitle = get_field('apartments_subtitle') ;
-   $apartments_title = get_field('apartments_title') ;
-   $apartments_description = get_field('apartments_description') ;
-   $apartments_button_text = get_field('apartments_button_text') ;
-   $apartments_button_url = get_field('apartments_button_url') ;
+   // Why Aspire Group section
+   $why_aspire_title = get_field('why_aspire_title') ?: 'Why Aspire Group?';
    
    // Neighborhood section
    $neighborhood_subtitle = get_field('neighborhood_subtitle') ;
@@ -209,13 +205,44 @@
        array('text' => '·'),
    );
    
-   $default_apartments = array(
-       array('title' => 'Penthouse', 'image' => '', 'beds' => 3, 'baths' => 2, 'sqft' => '1,245', 'link' => '#'),
-       array('title' => 'Premium Apartment', 'image' => '', 'beds' => 3, 'baths' => 2, 'sqft' => '1,245', 'link' => '#'),
-       array('title' => '3 Bedroom', 'image' => '', 'beds' => 3, 'baths' => 3, 'sqft' => '1,245', 'link' => '#'),
-       array('title' => '2 Bedroom', 'image' => '', 'beds' => 2, 'baths' => 1, 'sqft' => '1,245', 'link' => '#'),
-       array('title' => '1 Bedroom', 'image' => '', 'beds' => 1, 'baths' => 1, 'sqft' => '1,245', 'link' => '#'),
-       array('title' => 'Modern Suite', 'image' => '', 'beds' => 3, 'baths' => 3, 'sqft' => '1,245', 'link' => '#'),
+   $why_aspire_icons_uri = get_template_directory_uri() . '/assets/images/why-aspire';
+   $default_why_aspire_features = array(
+       array(
+           'icon' => $why_aspire_icons_uri . '/Quality.png',
+           'icon_svg' => '',
+           'title' => 'Quality First',
+           'description' => 'Premium materials, superior engineering, and uncompromising construction standards.',
+       ),
+       array(
+           'icon' => $why_aspire_icons_uri . '/coustomer.png',
+           'icon_svg' => '',
+           'title' => 'Customer-Centric Approach',
+           'description' => 'Every decision is guided by customer needs and expectations.',
+       ),
+       array(
+           'icon' => $why_aspire_icons_uri . '/time-to-delivery.png',
+           'icon_svg' => '',
+           'title' => 'Timely Delivery',
+           'description' => 'Commitment to delivering projects on schedule.',
+       ),
+       array(
+           'icon' => $why_aspire_icons_uri . '/location.png',
+           'icon_svg' => '',
+           'title' => 'Prime Locations',
+           'description' => 'Strategically selected locations with excellent connectivity.',
+       ),
+       array(
+           'icon' => $why_aspire_icons_uri . '/transperancy.png',
+           'icon_svg' => '',
+           'title' => 'Transparent Practices',
+           'description' => 'Clear communication and complete transparency throughout the buying journey.',
+       ),
+       array(
+           'icon' => $why_aspire_icons_uri . '/future-ready-Design.png',
+           'icon_svg' => '',
+           'title' => 'Future-Ready Design',
+           'description' => 'Modern architecture and thoughtful planning for evolving lifestyles.',
+       ),
    );
    
    $default_neighborhood_places = array(
@@ -319,17 +346,15 @@
        }
    }
    
-   $apartments_slider = have_rows('apartments_slider') ? array() : $default_apartments;
-   if (have_rows('apartments_slider')) {
-       while (have_rows('apartments_slider')) {
+   $why_aspire_features = have_rows('why_aspire_features') ? array() : $default_why_aspire_features;
+   if (have_rows('why_aspire_features')) {
+       while (have_rows('why_aspire_features')) {
            the_row();
-           $apartments_slider[] = array(
+           $why_aspire_features[] = array(
+               'icon' => get_sub_field('icon'),
+               'icon_svg' => get_sub_field('icon_svg'),
                'title' => get_sub_field('title'),
-               'image' => get_sub_field('image'),
-               'beds' => get_sub_field('beds'),
-               'baths' => get_sub_field('baths'),
-               'sqft' => get_sub_field('sqft'),
-               'link' => get_sub_field('link'),
+               'description' => get_sub_field('description'),
            );
        }
    }
@@ -353,7 +378,6 @@
     */
    $home_ongoing_ids  = get_field('home_ongoing_projects');
    $home_upcoming_ids = get_field('home_upcoming_projects');
-   $home_apt_ids      = get_field('home_apartments_projects');
 
    if (!empty($home_ongoing_ids) && is_array($home_ongoing_ids)) {
        $residences_cards = array();
@@ -384,19 +408,6 @@
        }
    }
 
-   if (!empty($home_apt_ids) && is_array($home_apt_ids)) {
-       $apartments_slider = array();
-       foreach ($home_apt_ids as $pid) {
-           $apartments_slider[] = array(
-               'title' => get_the_title($pid),
-               'image' => get_field('project_card_image', $pid),
-               'beds'  => get_field('project_card_beds', $pid),
-               'baths' => get_field('project_card_baths', $pid),
-               'sqft'  => get_field('project_card_sqft', $pid),
-               'link'  => get_permalink($pid),
-           );
-       }
-   }
    ?>
 <div data-elementor-type="wp-page" data-elementor-id="36" class="elementor elementor-36">
    <!-- Hero Section -->
@@ -965,61 +976,27 @@
          </div>
       </div>
    </div>
-   <!-- Apartments Section -->
-   <div class="elementor-element elementor-element-e915e81 e-flex e-con-boxed e-con e-parent e-lazyloaded" data-id="e915e81" data-element_type="container">
-      <div class="e-con-inner">
-         <div class="elementor-element elementor-element-c553f86 animated-fast elementor-widget elementor-widget-text-editor animated opal-move-up" data-id="c553f86" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;opal-move-up&quot;}" data-widget_type="text-editor.default">
-            <div class="elementor-widget-container">
-               <?php echo esc_html($apartments_subtitle); ?>						
-            </div>
-         </div>
-         <div class="elementor-element elementor-element-8e9a0f2 animated-fast elementor-widget elementor-widget-heading animated opal-move-up" data-id="8e9a0f2" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;opal-move-up&quot;}" data-widget_type="heading.default">
-            <div class="elementor-widget-container">
-               <h2 class="elementor-heading-title elementor-size-default"><?php echo esc_html($apartments_title); ?></h2>
-            </div>
-         </div>
-         <div class="elementor-element elementor-element-5b704ba animated-fast elementor-apartment-style-1 overflow-to-none elementor-pagination-position-outside elementor-widget elementor-widget-easto-apartments e-widget-swiper animated opal-move-up" data-id="5b704ba" data-element_type="widget" data-settings="{&quot;slides_to_show&quot;:3,&quot;slides_to_show_laptop&quot;:&quot;3&quot;,&quot;slides_to_show_tablet_extra&quot;:&quot;3&quot;,&quot;slides_to_show_tablet&quot;:&quot;2&quot;,&quot;slides_to_show_mobile_extra&quot;:&quot;2&quot;,&quot;slides_to_show_mobile&quot;:&quot;1&quot;,&quot;spaceBetween_laptop&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:30,&quot;sizes&quot;:[]},&quot;spaceBetween_tablet_extra&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:30,&quot;sizes&quot;:[]},&quot;spaceBetween_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:30,&quot;sizes&quot;:[]},&quot;spaceBetween_mobile_extra&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:30,&quot;sizes&quot;:[]},&quot;spaceBetween_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:15,&quot;sizes&quot;:[]},&quot;navigation&quot;:&quot;dots&quot;,&quot;_animation&quot;:&quot;opal-move-up&quot;,&quot;spaceBetween&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:30,&quot;sizes&quot;:[]},&quot;swiper_overflow&quot;:&quot;none&quot;,&quot;enable_scrollbar&quot;:&quot;no&quot;,&quot;autoplay&quot;:&quot;yes&quot;,&quot;pause_on_hover&quot;:&quot;yes&quot;,&quot;pause_on_interaction&quot;:&quot;yes&quot;,&quot;autoplay_speed&quot;:5000,&quot;infinite&quot;:&quot;yes&quot;,&quot;speed&quot;:500}" data-widget_type="easto-apartments.default">
-            <div class="elementor-widget-container">
-               <div class="elementor-apartment-wrapper apartment-archive easto-swiper swiper swiper-initialized swiper-horizontal swiper-pointer-events" dir="ltr">
-                  <div class="swiper-wrapper" id="swiper-wrapper-ed05dd4f6013172a" aria-live="off">
-                     <?php $total_apartments = count($apartments_slider); ?>
-                     <?php foreach ($apartments_slider as $index => $apartment) : ?>
-                     <div class="grid-item swiper-slide<?php echo $index === 0 ? ' swiper-slide-active' : ''; ?>" data-swiper-slide-index="<?php echo $index; ?>" style="width: 420px; margin-right: 30px;" role="group" aria-label="<?php echo ($index + 1) . ' / ' . $total_apartments; ?>">
-                        <div class="apartment-item">
-                           <div class="apartment-inner">
-                              <div class="apartment-post-thumbnail">
-                                 <a class="thumbnail-link" href="<?php echo esc_url($apartment['link']); ?>">
-                                 <img loading="lazy" decoding="async" width="768" height="392" src="<?php echo esc_url($apartment['image']); ?>" class="attachment-medium_large size-medium_large wp-post-image" alt="" sizes="(max-width: 768px) 100vw, 768px">                            </a>
-                                 <a class="apartment-more-link" href="<?php echo esc_url($apartment['link']); ?>">
-                                    <span>explore </span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-                                       <path d="M18.4 6l-1.68 1.75 6.72 7h-19.44v2.5h19.44l-6.72 7 1.68 1.75 9.6-10-9.6-10z" class="btn-icon__icon"></path>
-                                       <path d="M18.4 6l-1.68 1.75 6.72 7h-19.44v2.5h19.44l-6.72 7 1.68 1.75 9.6-10-9.6-10z" class="btn-icon__icon"></path>
-                                    </svg>
-                                 </a>
-                              </div>
-                              <div class="apartment-content">
-                                 <h4 class="apartment-title omega"><a href="<?php echo esc_url($apartment['link']); ?>"><?php echo esc_html($apartment['title']); ?></a></h4>
-                                 <div class="apartment-meta">
-                                    <div class="apartment-meta-inner">
-                                       <div class="meta-item"><span class="name">bed</span><span class="value"><?php echo intval($apartment['beds']); ?></span></div>
-                                       <div class="meta-item"><span class="name">bath</span><span class="value"><?php echo intval($apartment['baths']); ?></span></div>
-                                       <div class="meta-item"><span class="name">sqft</span><span class="value"><?php echo esc_html($apartment['sqft']); ?></span></div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <?php endforeach; ?>
+   <!-- Why Aspire Group Section -->
+   <section class="why-aspire-section" id="why-aspire">
+      <div class="why-aspire-container">
+         <h2 class="why-aspire-title"><?php echo esc_html($why_aspire_title); ?></h2>
+         <div class="why-aspire-grid">
+            <?php foreach ($why_aspire_features as $feature) : ?>
+               <div class="why-aspire-card">
+                  <div class="why-aspire-icon">
+                     <?php if (!empty($feature['icon_svg'])) : ?>
+                        <?php echo $feature['icon_svg']; // inline SVG allowed ?>
+                     <?php elseif (!empty($feature['icon'])) : ?>
+                        <img src="<?php echo esc_url($feature['icon']); ?>" alt="<?php echo esc_attr($feature['title']); ?>" loading="lazy" />
+                     <?php endif; ?>
                   </div>
-                  <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                  <h3 class="why-aspire-card-title"><?php echo esc_html($feature['title']); ?></h3>
+                  <p class="why-aspire-card-desc"><?php echo esc_html($feature['description']); ?></p>
                </div>
-               <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><?php for ($i = 0; $i < $total_apartments; $i++) : ?><span class="swiper-pagination-bullet<?php echo $i === 0 ? ' swiper-pagination-bullet-active' : ''; ?>" data-number="<?php echo str_pad($i + 1, 2, '0', STR_PAD_LEFT); ?>" tabindex="0"<?php echo $i === 0 ? ' aria-current="true"' : ''; ?>></span><?php endfor; ?></div>
-            </div>
+            <?php endforeach; ?>
          </div>
       </div>
-   </div>
+   </section>
    <!-- Neighborhood Section -->
    <div class="elementor-element elementor-element-a92668b e-flex e-con-boxed e-con e-parent mb-80 mb-md-150 " data-id="a92668b" data-element_type="container" id="neighborhood" data-settings='{"background_background":"classic"}'>
       <div class="e-con-inner pb-md-150 pb-80">
