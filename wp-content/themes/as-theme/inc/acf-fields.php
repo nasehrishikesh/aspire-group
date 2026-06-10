@@ -3104,3 +3104,77 @@ function as_theme_register_project_contact_acf_fields() {
     ));
 }
 add_action('acf/init', 'as_theme_register_project_contact_acf_fields');
+
+/**
+ * Register ACF Field Groups for FAQ Page
+ */
+function as_theme_register_faq_acf_fields() {
+    if (!function_exists('acf_add_local_field_group')) {
+        return;
+    }
+
+    acf_add_local_field_group(array(
+        'key'    => 'group_faq_page',
+        'title'  => 'FAQ Page',
+        'fields' => array(
+            array(
+                'key'           => 'field_faq_page_subtitle',
+                'label'         => 'Section Subtitle',
+                'name'          => 'faq_section_subtitle',
+                'type'          => 'text',
+                'default_value' => 'Got questions?',
+                'instructions'  => 'Small label above the main heading.',
+            ),
+            array(
+                'key'           => 'field_faq_page_title',
+                'label'         => 'Section Title',
+                'name'          => 'faq_section_title',
+                'type'          => 'text',
+                'default_value' => 'Frequently Asked Questions',
+                'instructions'  => 'Main heading of the FAQ section.',
+            ),
+            array(
+                'key'           => 'field_faq_items',
+                'label'         => 'FAQ Items',
+                'name'          => 'faq_items',
+                'type'          => 'repeater',
+                'instructions'  => 'Add, edit, or reorder FAQ entries.',
+                'min'           => 1,
+                'layout'        => 'block',
+                'button_label'  => 'Add FAQ Item',
+                'sub_fields'    => array(
+                    array(
+                        'key'           => 'field_faq_question',
+                        'label'         => 'Question',
+                        'name'          => 'faq_question',
+                        'type'          => 'text',
+                        'required'      => 1,
+                        'wrapper'       => array('width' => '100'),
+                    ),
+                    array(
+                        'key'           => 'field_faq_answer',
+                        'label'         => 'Answer',
+                        'name'          => 'faq_answer',
+                        'type'          => 'textarea',
+                        'rows'          => 4,
+                        'required'      => 1,
+                        'wrapper'       => array('width' => '100'),
+                    ),
+                ),
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param'    => 'page_template',
+                    'operator' => '==',
+                    'value'    => 'template-faq.php',
+                ),
+            ),
+        ),
+        'menu_order' => 0,
+        'position'   => 'normal',
+        'style'      => 'default',
+    ));
+}
+add_action('acf/init', 'as_theme_register_faq_acf_fields');

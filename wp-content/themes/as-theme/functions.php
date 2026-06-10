@@ -120,6 +120,9 @@ function as_theme_enqueue_styles() {
 
     // Helper utility classes (Bootstrap-like)
     wp_enqueue_style('as-helpers', AS_THEME_URI . '/assets/css/helpers.css', array(), AS_THEME_VERSION);
+
+    // FAQ page
+    wp_enqueue_style('as-faq', AS_THEME_URI . '/assets/css/faq.css', array(), AS_THEME_VERSION);
 }
 add_action('wp_enqueue_scripts', 'as_theme_enqueue_styles');
 
