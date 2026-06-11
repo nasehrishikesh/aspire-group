@@ -480,7 +480,17 @@ body .is-layout-grid>* {
   letter-spacing: 1px;
 }
 
-/* Team Grid Custom Layout for About Us */
+/* Fix Meet Our Leader container to match site-standard 1320px width.
+   post-5841.css sets --content-width: 1730px at ≥768px on element 82a602e;
+   this override restores parity with the Neighborhood section. */
+.home-meet-our-leader .elementor-element-82a602e {
+  --content-width: 1320px !important;
+}
+
+/* Team Grid — 10 columns.
+   Layout: col 1 empty | content cols 2–9 | col 10 empty
+   Row 1: header (3 cols) · gap col 5 · photo-A (2 cols) · photo-B (2 cols)
+   Row 2: photo-C (2 cols) · photo-D (2 cols) · photo-E (4 cols)          */
 .team-custom-grid {
   display: grid !important;
   grid-template-columns: repeat(10, 1fr) !important;
@@ -490,7 +500,7 @@ body .is-layout-grid>* {
 }
 
 .team-custom-grid .team-header-block {
-  grid-column: 3 / 6 !important;
+  grid-column: 2 / 5 !important;
   grid-row: 1 / 2 !important;
   display: flex;
   flex-direction: column;
@@ -499,37 +509,47 @@ body .is-layout-grid>* {
   padding-top: 0;
 }
 
-/* Row 1: 2 equal photos on right side */
+/* Row 1: 2 photos on right side */
 .team-custom-grid .elementor-teambox-item.grid-item:nth-child(2) {
-  grid-column: 7 / 9 !important;
+  grid-column: 6 / 8 !important;
   grid-row: 1 / 2 !important;
 }
 
 .team-custom-grid .elementor-teambox-item.grid-item:nth-child(3) {
-  grid-column: 9 / 11 !important;
+  grid-column: 8 / 10 !important;
   grid-row: 1 / 2 !important;
 }
 
-/* Row 2: 3 photos spanning full width */
+/* Row 2: 3 photos — col 10 stays empty on the right */
 .team-custom-grid .elementor-teambox-item.grid-item:nth-child(4) {
-  grid-column: 5 / 3 !important;
+  grid-column: 2 / 4 !important;
   grid-row: 2 / 3 !important;
 }
 
 .team-custom-grid .elementor-teambox-item.grid-item:nth-child(5) {
-  grid-column: 5 / 7 !important;
+  grid-column: 4 / 6 !important;
   grid-row: 2 / 3 !important;
 }
 
 .team-custom-grid .elementor-teambox-item.grid-item:nth-child(6) {
-  grid-column: 7 / 11 !important;
+  grid-column: 6 / 10 !important;
   grid-row: 2 / 3 !important;
 }
 
-.team-custom-grid .elementor-teambox-item .elementor-teambox-image img {
+/* Force consistent square crop on all team photos.
+   object-position: center top keeps faces in frame. */
+.team-custom-grid .elementor-teambox-item .team-image-inner {
+  aspect-ratio: 0 / 3;
+  width: 100%;
+  overflow: hidden;
+}
+
+.team-custom-grid .elementor-teambox-item .team-image-inner img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
+  display: block;
 }
 
 .team-custom-grid .team-subtitle {
@@ -604,94 +624,128 @@ body .is-layout-grid>* {
   .team-custom-grid .elementor-teambox-item .team-image-inner {
     aspect-ratio: 1 / 1 !important;
     width: 100% !important;
+    overflow: hidden !important;
+  }
+
+  .team-custom-grid .elementor-teambox-item .team-image-inner img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center top !important;
   }
 }
+
 /* =====================================================
    Why Aspire Group Section
    ===================================================== */
 .why-aspire-section {
-   padding: 80px 0 100px;
-   background: var(--background_light);
+  padding: 80px 0 100px;
+  background: var(--background_light);
 }
+
 .why-aspire-container {
-   max-width: 1300px;
-   margin: 0 auto;
-   padding: 0 20px;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
+
 .why-aspire-title {
-   text-align: center;
-   font-family: var(--e-global-typography-accent-font-family);
-   font-size: 38px;
-   font-weight: 600;
-   color: var(--primary);
-   letter-spacing: 1px;
-   margin: 0 0 50px;
-   text-transform: uppercase;
-   line-height: 1.2;
+  text-align: center;
+  font-family: var(--e-global-typography-accent-font-family);
+  font-size: 38px;
+  font-weight: 600;
+  color: var(--primary);
+  letter-spacing: 1px;
+  margin: 0 0 50px;
+  text-transform: uppercase;
+  line-height: 1.2;
 }
+
 .why-aspire-grid {
-   display: grid;
-   grid-template-columns: repeat(6, minmax(0, 1fr));
-   gap: 24px;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 24px;
 }
+
 .why-aspire-card {
-   background: #ffffff;
-   border-radius: 8px;
-   padding: 32px 18px 30px;
-   text-align: center;
-   box-shadow: 0 2px 14px rgba(20, 33, 61, 0.06);
-   transition: transform .25s ease, box-shadow .25s ease;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 32px 18px 30px;
+  text-align: center;
+  box-shadow: 0 2px 14px rgba(20, 33, 61, 0.06);
+  transition: transform .25s ease, box-shadow .25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
 .why-aspire-card:hover {
-   transform: translateY(-4px);
-   box-shadow: 0 8px 22px rgba(20, 33, 61, 0.12);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 22px rgba(20, 33, 61, 0.12);
 }
+
 .why-aspire-icon {
-   width: 72px;
-   height: 72px;
-   margin-bottom: 20px;
-   display: flex;
-   align-items: center;
-   justify-content: center;
+  width: 72px;
+  height: 72px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .why-aspire-icon svg,
 .why-aspire-icon img {
-   max-width: 100%;
-   max-height: 100%;
-   width: auto;
-   height: auto;
-   object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
 }
+
 .why-aspire-card-title {
-   font-family: var(--e-global-typography-accent-font-family);
-   font-size: 16px;
-   font-weight: 600;
-   color: var(--primary);
-   letter-spacing: 0.6px;
-   text-transform: uppercase;
-   margin: 0 0 10px;
-   line-height: 1.3;
+  font-family: var(--e-global-typography-accent-font-family);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--primary);
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  margin: 0 0 10px;
+  line-height: 1.3;
 }
+
 .why-aspire-card-desc {
-   font-family: var(--e-global-typography-text-font-family);
-   font-size: 14px;
-   font-weight: 300;
-   line-height: 1.6;
-   color: var(--text);
-   margin: 0;
+  font-family: var(--e-global-typography-text-font-family);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--text);
+  margin: 0;
 }
 
 @media (max-width: 1200px) {
-   .why-aspire-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .why-aspire-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
+
 @media (max-width: 768px) {
-   .why-aspire-section { padding: 60px 0 70px; }
-   .why-aspire-title { font-size: 28px; margin-bottom: 32px; }
-   .why-aspire-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .why-aspire-section {
+    padding: 60px 0 70px;
+  }
+
+  .why-aspire-title {
+    font-size: 28px;
+    margin-bottom: 32px;
+  }
+
+  .why-aspire-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
 }
+
 @media (max-width: 480px) {
-   .why-aspire-grid { grid-template-columns: 1fr; }
+  .why-aspire-grid {
+    grid-template-columns: 1fr;
+  }
 }

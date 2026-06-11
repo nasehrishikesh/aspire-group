@@ -273,9 +273,13 @@
        while (have_rows('residences_cards')) {
            the_row();
            $residences_cards[] = array(
-               'title' => get_sub_field('title'),
-               'description' => get_sub_field('description'),
-               'image' => get_sub_field('image'),
+               'title'         => get_sub_field('title'),
+               'description'   => get_sub_field('description'),
+               'image'         => get_sub_field('image'),
+               'button_text'   => get_sub_field('button_text') ?: 'Learn More',
+               'button_action' => get_sub_field('button_action') ?: 'link',
+               'button_url'    => get_sub_field('button_url'),
+               'button_page'   => get_sub_field('button_page'), // post ID (post_object field)
            );
        }
    }
@@ -346,17 +350,23 @@
        }
    }
    
-   $why_aspire_features = have_rows('why_aspire_features') ? array() : $default_why_aspire_features;
+   $why_aspire_features = array();
    if (have_rows('why_aspire_features')) {
        while (have_rows('why_aspire_features')) {
            the_row();
+           $row_title = get_sub_field('title');
+           if (empty($row_title)) continue; // skip blank rows
            $why_aspire_features[] = array(
                'icon' => get_sub_field('icon'),
                'icon_svg' => get_sub_field('icon_svg'),
-               'title' => get_sub_field('title'),
+               'title' => $row_title,
                'description' => get_sub_field('description'),
            );
        }
+   }
+   // Fall back to default static data if no valid rows were saved
+   if (empty($why_aspire_features)) {
+       $why_aspire_features = $default_why_aspire_features;
    }
    
    $neighborhood_places = have_rows('neighborhood_places') ? array() : $default_neighborhood_places;
@@ -613,7 +623,18 @@
       <div class="e-con-inner">
          <div class="elementor-element elementor-element-453ae96 e-con-full e-flex e-con e-child" data-id="453ae96" data-element_type="container">
             <?php foreach ($residences_cards as $card) : ?>
-            <div class="elementor-element elementor-element-836890a elementor-cta--layout-image-left elementor-cta--valign-top elementor-widget__width-initial elementor-cta--mobile-layout-image-above elementor-cta--skin-classic button-style-theme-default elementor-animated-content elementor-animated-content elementor-bg-transform elementor-bg-transform-zoom-in elementor-widget elementor-widget-easto-banner" data-id="836890a" data-element_type="widget" data-widget_type="easto-banner.default">
+            <?php
+            $card_btn_action = $card['button_action'] ?? 'link';
+            if ($card_btn_action === 'link') {
+                $card_url = !empty($card['button_url']) ? $card['button_url'] : '#';
+            } elseif ($card_btn_action === 'page') {
+                $card_page_id = !empty($card['button_page']) ? $card['button_page'] : 0;
+                $card_url = $card_page_id ? get_permalink($card_page_id) : '#';
+            } else {
+                $card_url = '#easto-button-popup-8feb59a';
+            }
+            ?>
+            <a href="<?php echo esc_url($card_url); ?>" class="elementor-element elementor-element-836890a elementor-cta--layout-image-left elementor-cta--valign-top elementor-widget__width-initial elementor-cta--mobile-layout-image-above elementor-cta--skin-classic button-style-theme-default elementor-animated-content elementor-animated-content elementor-bg-transform elementor-bg-transform-zoom-in elementor-widget elementor-widget-easto-banner" data-id="836890a" data-element_type="widget" data-widget_type="easto-banner.default" style="text-decoration:none;display:block;">
                <div class="elementor-widget-container">
                   <div class="elementor-cta">
                      <div class="elementor-cta__bg-wrapper">
@@ -626,19 +647,13 @@
                               <div>
                                  <h5 class="elementor-cta__title elementor-cta__content-item elementor-content-item"><?php echo esc_html($card['title']); ?></h5>
                                  <div class="elementor-cta__description elementor-cta__content-item elementor-content-item">
-                                    <?php echo esc_html($card['description']); ?>                            
+                                    <?php echo esc_html($card['description']); ?>
                                  </div>
                               </div>
-                              <?php
-                              $button_action = $card['button_action'] ?? 'link';
-                              $button_url = ($button_action === 'link') ? ($card['button_url'] ?? '#') : (($button_action === 'page') ? ($card['button_page'] ?? '#') : '#easto-button-popup-8feb59a');
-                              $popup_class = ($button_action === 'popup') ? ' button-popup' : '';
-                              $popup_effect = ($button_action === 'popup') ? ' data-effect="mfp-zoom-in"' : '';
-                              ?>
                               <div class="elementor-element elementor-element-e950585 elementor-button-type-link  elementor-widget elementor-widget-button" data-id="e950585" data-element_type="widget"  data-widget_type="button.default">
                                  <div class="elementor-widget-container">
                                     <div class="elementor-button-wrapper">
-                                       <a class="elementor-button elementor-button-link elementor-size-sm btn-hover-rm color-text-light<?php echo esc_attr($popup_class); ?>" href="<?php echo esc_url($button_url); ?>"<?php echo $popup_effect; ?>>
+                                       <span class="elementor-button elementor-button-link elementor-size-sm btn-hover-rm color-text-light">
                                           <span class="elementor-button-content-wrapper">
                                              <span class="elementor-button-icon">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
@@ -646,9 +661,9 @@
                                                    <path d="M18.4 6l-1.68 1.75 6.72 7h-19.44v2.5h19.44l-6.72 7 1.68 1.75 9.6-10-9.6-10z" class="btn-icon__icon"></path>
                                                 </svg>
                                              </span>
-                                             <span class="elementor-button-text"><?php echo esc_html($card['button_text'] ?? 'Learn More'); ?></span>
+                                             <span class="elementor-button-text"><?php echo esc_html(!empty($card['button_text']) ? $card['button_text'] : 'Learn More'); ?></span>
                                           </span>
-                                       </a>
+                                       </span>
                                     </div>
                                  </div>
                               </div>
@@ -657,7 +672,7 @@
                      </div>
                   </div>
                </div>
-            </div>
+            </a>
             <?php endforeach; ?>
          </div>
          <div class="elementor-element elementor-element-1a6bc67 e-con-full e-flex e-con e-child elementor-sticky" data-id="1a6bc67" data-element_type="container" data-settings='{"sticky_on":["desktop","laptop","tablet_extra","tablet"],"sticky_parent":"yes","sticky":"top","sticky_offset":60,"sticky_effects_offset":0}'>
@@ -811,8 +826,9 @@
          </div>
          <div class="elementor-element elementor-element-6f18329 e-con-full e-flex e-con e-child" data-id="6f18329" data-element_type="container">
             <?php foreach ($amenities_banners as $index => $banner) : ?>
+            <?php $banner_url = !empty($banner['link']) ? $banner['link'] : '#'; ?>
             <?php if ($banner['media_type'] === 'video' && !empty($banner['video_url'])) : ?>
-            <div class="elementor-element elementor-element-ce521e2 e-con-full e-flex e-con e-child" data-id="ce521e2" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;video&quot;}">
+            <a href="<?php echo esc_url($banner_url); ?>" class="elementor-element elementor-element-ce521e2 e-con-full e-flex e-con e-child" data-id="ce521e2" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;video&quot;}" style="text-decoration:none;display:flex;">
                <div class="elementor-element elementor-element-12bdc97 e-con-full e-flex e-con e-child" data-id="12bdc97" data-element_type="container">
                   <div class="elementor-element elementor-element-c2cfb80 elementor-cta--layout-image-right elementor-widget__width-initial elementor-cta--mobile-layout-image-above elementor-cta--mobile_extra-layout-image-right elementor-cta--valign-top content-stretch-yes elementor-cta--skin-classic button-style-theme-default elementor-animated-content elementor-animated-content elementor-bg-transform elementor-bg-transform-zoom-in elementor-widget elementor-widget-easto-banner" data-id="c2cfb80" data-element_type="widget" data-widget_type="easto-banner.default">
                      <div class="elementor-widget-container">
@@ -841,9 +857,9 @@
                      <video class="elementor-background-video-hosted elementor-html5-video" autoplay="" muted="" playsinline="" loop="" src="<?php echo esc_url($banner['video_url']); ?>" style="width: 1066.67px; height: 600px;"></video>
                   </div>
                </div>
-            </div>
+            </a>
             <?php else : ?>
-            <div class="elementor-element elementor-element-76c3845 elementor-cta--layout-image-right elementor-cta--valign-top elementor-widget__width-initial elementor-cta--mobile-layout-image-above elementor-cta--mobile_extra-layout-image-right elementor-cta--skin-classic button-style-theme-default elementor-animated-content elementor-animated-content elementor-bg-transform elementor-bg-transform-zoom-in elementor-widget elementor-widget-easto-banner" data-id="76c3845" data-element_type="widget" data-widget_type="easto-banner.default">
+            <a href="<?php echo esc_url($banner_url); ?>" class="elementor-element elementor-element-76c3845 elementor-cta--layout-image-right elementor-cta--valign-top elementor-widget__width-initial elementor-cta--mobile-layout-image-above elementor-cta--mobile_extra-layout-image-right elementor-cta--skin-classic button-style-theme-default elementor-animated-content elementor-animated-content elementor-bg-transform elementor-bg-transform-zoom-in elementor-widget elementor-widget-easto-banner" data-id="76c3845" data-element_type="widget" data-widget_type="easto-banner.default" style="text-decoration:none;display:block;">
                <div class="elementor-widget-container">
                   <div class="elementor-cta">
                      <div class="elementor-cta__bg-wrapper">
@@ -867,7 +883,7 @@
                      </div>
                   </div>
                </div>
-            </div>
+            </a>
             <?php endif; ?>
             <?php endforeach; ?>
          </div>

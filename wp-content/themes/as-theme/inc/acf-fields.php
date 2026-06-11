@@ -629,15 +629,14 @@ array(
                 'key' => 'field_residences_button_page',
                 'label' => 'Button Page',
                 'name' => 'residences_button_page',
-                'type' => 'page_link',
-                        'post_type' => array(
-                            0 => 'page',
-                            1 => 'post',
-                            2 => 'residences',
-                            3 => 'amenities',
-                            4 => 'neighborhood',
-                            5 => 'apartments',
-                        ),
+                'type' => 'post_object',
+                'post_type' => array(
+                    0 => 'page',
+                    1 => 'post',
+                    2 => 'projects',
+                ),
+                'return_format' => 'id',
+                'ui' => 1,
                 'conditional_logic' => array(
                     array(
                         array(
@@ -716,15 +715,14 @@ array(
                         'key' => 'field_residence_card_button_page',
                         'label' => 'Button Page',
                         'name' => 'button_page',
-                        'type' => 'page_link',
+                        'type' => 'post_object',
                         'post_type' => array(
                             0 => 'page',
                             1 => 'post',
-                            2 => 'residences',
-                            3 => 'amenities',
-                            4 => 'neighborhood',
-                            5 => 'apartments',
+                            2 => 'projects',
                         ),
+                        'return_format' => 'id',
+                        'ui' => 1,
                         'conditional_logic' => array(
                             array(
                                 array(
@@ -905,15 +903,14 @@ array(
                 'key' => 'field_amenities_button_page',
                 'label' => 'Button Page',
                 'name' => 'amenities_button_page',
-                'type' => 'page_link',
-                        'post_type' => array(
-                            0 => 'page',
-                            1 => 'post',
-                            2 => 'residences',
-                            3 => 'amenities',
-                            4 => 'neighborhood',
-                            5 => 'apartments',
-                        ),
+                'type' => 'post_object',
+                'post_type' => array(
+                    0 => 'page',
+                    1 => 'post',
+                    2 => 'projects',
+                ),
+                'return_format' => 'id',
+                'ui' => 1,
                 'conditional_logic' => array(
                     array(
                         array(

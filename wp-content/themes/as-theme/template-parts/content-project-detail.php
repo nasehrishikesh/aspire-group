@@ -77,6 +77,59 @@
    // Per-page unique IDs for the two popups
    $floor_plan_popup_id = 'easto-button-popup-floor-plan-' . get_the_ID();
    $brochure_popup_id   = 'easto-button-popup-brochure-' . get_the_ID();
+
+   // ── Section visibility flags ────────────────────────────────────────────
+   // ACF field groups define default values for title/subtitle fields, so
+   // get_field() is NEVER empty for those. Gate each section on the content
+   // that requires real editorial input: images, files, descriptions, and
+   // repeater rows that have an actual non-zero/non-empty primary value.
+
+   // Welcome: needs an image OR actual descriptive text.
+   $show_welcome = !empty($welcome_image) || !empty($welcome_description);
+
+   // Landmark/About: needs a real description OR at least one counter with a
+   // non-empty, non-zero number. The default empty repeater row (number = 0)
+   // does NOT count.
+   $show_landmark = false;
+   if (!empty($landmark_description)) {
+       $show_landmark = true;
+   } elseif (!empty($landmark_counters) && is_array($landmark_counters)) {
+       foreach ($landmark_counters as $_c) {
+           if (isset($_c['number']) && (string) $_c['number'] !== '' && (string) $_c['number'] !== '0') {
+               $show_landmark = true;
+               break;
+           }
+       }
+   }
+
+   // Amenities: needs at least one item with a non-empty title AND image.
+   $show_amenities = false;
+   if (!empty($amenities_items) && is_array($amenities_items)) {
+       foreach ($amenities_items as $_a) {
+           if (!empty($_a['title']) || !empty($_a['image'])) {
+               $show_amenities = true;
+               break;
+           }
+       }
+   }
+
+   // Neighborhood: needs at least one category with a non-empty name.
+   $show_neighborhood = false;
+   if (!empty($neighborhood_categories) && is_array($neighborhood_categories)) {
+       foreach ($neighborhood_categories as $_n) {
+           if (!empty($_n['category_name'])) {
+               $show_neighborhood = true;
+               break;
+           }
+       }
+   }
+
+   // Floor plan: the image is the essential deliverable.
+   $show_floor_plan = !empty($floor_plan_image);
+
+   // Brochure: needs a downloadable file or a background image.
+   $show_brochure = !empty($brochure_file) || !empty($brochure_background);
+   // ────────────────────────────────────────────────────────────────────────
    ?>
 <div id="page" class="hfeed site elementor-5841 elementor-36">
    <!-- Breadcrumb Section -->
@@ -112,6 +165,7 @@
    <div id="content" class="site-content clear mb-0" tabindex="-1">
       <div id="primary">
          <main id="main" class="site-main">
+            <?php if ($show_welcome) : ?>
             <div class="elementor-element elementor-element-aadbbc7 e-flex e-con-boxed e-con e-parent mt-150" data-id="aadbbc7" data-element_type="container">
                <div class="e-con-inner">
                   <div class="elementor-element elementor-element-2b111ff e-con-full e-flex e-con e-child" data-id="2b111ff" data-element_type="container" data-settings='{"background_background":"classic"}'>
@@ -156,6 +210,8 @@
                   <div class="elementor-element elementor-element-6022562 e-con-full animated-fast e-flex e-con e-child animated opal-move-right" data-id="6022562" data-element_type="container" data-settings='{"background_background":"classic","animation":"opal-move-right"}' style="background-image: url('<?php echo esc_url($welcome_image); ?>');"></div>
                </div>
             </div>
+            <?php endif; ?>
+            <?php if ($show_landmark) : ?>
             <div data-elementor-type="wp-page" data-elementor-id="5990" class="elementor elementor-5990">
                <div class="elementor-element elementor-element-a97a29b e-con-full pl-vw e-flex e-con e-parent e-lazyloaded" data-id="a97a29b" data-element_type="container">
                   <div class="elementor-element elementor-element-7adec53 e-con-full e-flex e-con e-child" data-id="7adec53" data-element_type="container">
@@ -219,7 +275,8 @@
                   <?php $counter_delay += 300; endforeach; endif; ?>
                </div>
             </div>
-            <?php if ($amenities_items) : ?>
+            <?php endif; // landmark section ?>
+            <?php if ($show_amenities) : ?>
             <div data-elementor-type="wp-page" data-elementor-id="6134" class="elementor elementor-6134" id="amenities-sync-section">
                <div class="elementor-element elementor-element-e1bb64b e-flex e-con-boxed e-con e-parent e-lazyloaded" data-id="e1bb64b" data-element_type="container" data-settings='{"background_background":"classic"}'>
                   <div class="e-con-inner">
@@ -266,7 +323,7 @@
             <?php endif; ?>
 
             <!-- Neighborhood Section -->
-            <?php if ($neighborhood_categories) : ?>
+            <?php if ($show_neighborhood) : ?>
                <div data-elementor-type="wp-page" data-elementor-id="6134" class="elementor-element elementor-element-aadbbc7 e-flex e-con-boxed e-con e-parent mt-150 e-lazyloaded" id="neighborhood-sync-section">
             <div class="elementor-element elementor-element-e1bb64b e-flex e-con-boxed e-con e-parent e-lazyloaded" data-id="e1bb64b" data-element_type="container" data-settings='{"background_background":"classic"}'>
                   <div class="e-con-inner">
@@ -322,7 +379,7 @@
             <!-- ============================================================
                  Floor Plan Section
             ============================================================== -->
-            <?php if ($floor_plan_image || $floor_plan_title) : ?>
+            <?php if ($show_floor_plan) : ?>
             <section class="project-extra-section project-floor-plan-section" id="floor-plan-section">
                <div class="project-extra-container">
                   <header class="project-extra-header elementor elementor-5990">
@@ -479,7 +536,7 @@
             <!-- ============================================================
                  Download Brochure Section
             ============================================================== -->
-            <?php if ($brochure_title || $brochure_background || $brochure_file) : ?>
+            <?php if ($show_brochure) : ?>
             <section class="project-extra-section project-brochure-section"
                      id="brochure-section"
                      <?php if ($brochure_background) : ?>style="background-image:url('<?php echo esc_url($brochure_background); ?>')"<?php endif; ?>>
