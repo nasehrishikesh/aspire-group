@@ -2271,7 +2271,6 @@ function as_theme_register_project_amenities_acf_fields() {
                         'label' => 'Title',
                         'name' => 'title',
                         'type' => 'text',
-                        'required' => 1,
                     ),
                     array(
                         'key' => 'field_project_amenity_image',
@@ -2279,7 +2278,6 @@ function as_theme_register_project_amenities_acf_fields() {
                         'name' => 'image',
                         'type' => 'image',
                         'return_format' => 'url',
-                        'required' => 1,
                     ),
                 ),
             ),
@@ -2340,7 +2338,6 @@ function as_theme_register_project_neighborhood_acf_fields() {
                         'label' => 'Category Name',
                         'name' => 'category_name',
                         'type' => 'text',
-                        'required' => 1,
                         'instructions' => 'e.g. Shopping, Restaurants, Education, Entertainment',
                     ),
                     array(
@@ -2357,14 +2354,12 @@ function as_theme_register_project_neighborhood_acf_fields() {
                                 'label' => 'Place Name',
                                 'name' => 'place_name',
                                 'type' => 'text',
-                                'required' => 1,
                             ),
                             array(
                                 'key' => 'field_neighborhood_place_distance',
                                 'label' => 'Distance (km)',
                                 'name' => 'distance',
                                 'type' => 'text',
-                                'required' => 1,
                                 'instructions' => 'e.g. 1.2 km',
                             ),
                         ),
@@ -2468,7 +2463,6 @@ function as_theme_register_project_landmark_acf_fields() {
                         'label' => 'Number',
                         'name' => 'number',
                         'type' => 'number',
-                        'required' => 1,
                     ),
                     array(
                         'key' => 'field_project_landmark_counter_suffix',
@@ -2482,7 +2476,6 @@ function as_theme_register_project_landmark_acf_fields() {
                         'label' => 'Description',
                         'name' => 'description',
                         'type' => 'text',
-                        'required' => 1,
                     ),
                 ),
             ),
@@ -2530,7 +2523,6 @@ function as_theme_register_project_card_acf_fields() {
                     'completed' => 'Completed Project',
                 ),
                 'default_value' => 'ongoing',
-                'required' => 1,
                 'return_format' => 'value',
             ),
             array(
